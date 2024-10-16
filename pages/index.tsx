@@ -1,11 +1,11 @@
 import {
-  Grid,
+  Grid2,
   ThemeProvider,
   createTheme,
   responsiveFontSizes,
 } from "@mui/material";
 
-import Content from "../components/Content";
+import ContactsTable from "../components/ContactsTable";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Layout from "../components/Layout";
@@ -42,15 +42,15 @@ theme.typography.h5 = {
 const IndexPage = () => (
   <ThemeProvider theme={theme}>
     <Layout title="nextjs-typescript-template">
-      <Grid
+      <Grid2
         className="app height-full"
         itemScope
         itemType="http://schema.org/LocalBusiness"
       >
         <Header />
-        <Content />
+        <ContactsTable />
         <Footer />
-      </Grid>
+      </Grid2>
     </Layout>
   </ThemeProvider>
 );
