@@ -4,6 +4,7 @@ header.app-bar {
   background-color: var(--background-secondary);
   color: var(--primary-color);
   transition: min-height 0.5s;
+  position: relative;
 }
 
 .header {
