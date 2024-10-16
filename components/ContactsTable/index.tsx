@@ -54,7 +54,7 @@ const rows = [
 type ContactsTableProps = {} & React.HTMLAttributes<HTMLDivElement> &
   Partial<Record<Breakpoint, boolean | GridSize>>;
 
-const ContactsTable: React.FC<ContactsTableProps> = (props) => {
+const ContactsTable: React.FC<ContactsTableProps> = (_) => {
   return (
     <Grid2 className={classNames(styles["contacts-table-container"])}>
       <TableContainer component={Paper}>
