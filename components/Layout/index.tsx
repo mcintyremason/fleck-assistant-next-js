@@ -1,5 +1,5 @@
-import React, { ReactNode } from "react";
 import Head from "next/head";
+import { ReactNode } from "react";
 
 type Props = {
   children?: ReactNode;
@@ -9,7 +9,7 @@ type Props = {
 
 const Layout = ({
   children,
-  title = "nextjs-typescript-template",
+  title = "fleck-assistant-next-js",
   styles = "",
 }: Props) => (
   <div>
