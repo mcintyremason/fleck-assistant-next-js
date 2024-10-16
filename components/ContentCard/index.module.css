@@ -1,0 +1,50 @@
+.content-card-container {
+  padding: 5px;
+}
+
+.content-card-container .title {
+  margin-bottom: 0;
+}
+
+.content-card-container .description {
+  display: none;
+}
+
+.content-card-image-container {
+  height: 160px;
+  overflow: hidden;
+}
+
+img.content-card-image {
+  width: var(--mobile-card-image-width);
+}
+
+/* 
+  Cannot use CSS variables in media queries.
+  CSS variables can only be used on CSS declarations.
+*/
+/* @media only screen and (min-width: var(--md)) { */
+@media only screen and (min-width: 769px) {
+  div.content-card-container {
+    padding: 15px;
+    max-width: var(--card-width);
+    flex-basis: unset;
+  }
+
+  .content-card-container .title {
+    margin-bottom: 0.35em;
+  }
+
+  .content-card-container .description {
+    display: initial;
+  }
+
+  .content-card-image-container {
+    height: 170px;
+    overflow: hidden;
+  }
+
+  img.content-card-image {
+    width: var(--card-width);
+  }
+}

@@ -1,0 +1,164 @@
+/* Variables */
+:root {
+  --primary-color: #e43d30;
+  --secondary-color: #ffd040;
+  --border-primary: #000000;
+  --background-primary: #ffffff;
+  --background-secondary: #0f0f0f;
+
+  --mobile-header-height: 71px;
+  --desktop-header-height: 86px;
+  --footer-height: 65px;
+  --card-width: 345px;
+  --card-image-max-height: 250px;
+  --mobile-card-image-width: 300px;
+  --mobilecard-image-max-height: 100px;
+
+  /* 
+    Cannot use CSS variables in media queries.
+    CSS variables can only be used on CSS declarations.
+  
+    --xs: 0px;
+    --sm: 425px;
+    --md: 769px;
+    --lg: 1280;
+    --xl: 1920; 
+  */
+}
+
+/* Fonts */
+/* Webfont: BloggerSans */
+@font-face {
+  font-family: "BloggerSans";
+  src: url("fonts/1001fonts/BloggerSans.eot");
+  /* IE9 Compat Modes */
+  src: url("fonts/1001fonts/BloggerSans.eot?#iefix") format("embedded-opentype"),
+    url("fonts/1001fonts/BloggerSans.woff") format("woff"),
+    url("fonts/1001fonts/BloggerSans.ttf") format("truetype"),
+    url("fonts/1001fonts/BloggerSans.svg#BloggerSans") format("svg");
+  /* Legacy iOS */
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+/* Webfont: BloggerSans */
+@font-face {
+  font-family: "San Frediano";
+  src: url("fonts/1001fonts/san_frediano_regular.ttf");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  height: inherit;
+  margin: 0;
+  font-family: sans-serif;
+}
+
+a {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+  border-bottom: 3px solid;
+  transition: all 0.5s;
+  text-decoration: none;
+}
+a:hover {
+  color: var(--secondary-color);
+  border-color: transparent;
+}
+a:focus {
+  color: var(--secondary-color);
+  border-color: transparent;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--primary-color);
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+h1 {
+  font-size: 1.75em;
+}
+h2 {
+  font-size: 1.5em;
+}
+h3 {
+  font-size: 1.25em;
+}
+h4 {
+  font-size: 1em;
+}
+h5 {
+  font-size: 0.9em;
+}
+h6 {
+  font-size: 0.8em;
+}
+li,
+p {
+  font-size: 0.9em;
+  font-weight: 468px;
+  line-height: 1.4em;
+}
+li {
+  margin: 10px 0;
+}
+.hide {
+  display: none;
+}
+
+#root {
+  height: inherit;
+}
+
+.app {
+  height: inherit;
+  font-family: "San Frediano", "BloggerSans", "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.app::-webkit-scrollbar {
+  display: none;
+}
+.app::-webkit-scrollbar {
+  width: 0px;
+  /* Remove scrollbar */
+  background: transparent;
+  /* Optional: just make scrollbar invisible */
+}
+
+.height-inherit {
+  height: inherit;
+}
+
+.height-full {
+  height: 100%;
+}
+
+@media only screen and (min-width: 769px) {
+  body > div {
+    height: inherit;
+  }
+
+  body > div > div {
+    height: inherit;
+  }
+}
