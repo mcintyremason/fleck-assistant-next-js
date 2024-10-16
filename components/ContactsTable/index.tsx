@@ -63,7 +63,7 @@ const ContactsTable: React.FC<ContactsTableProps> = (_) => {
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
             <TableRow>
-              <StyledTableCell>Name)</StyledTableCell>
+              <StyledTableCell>Name</StyledTableCell>
               <StyledTableCell align="right">Email</StyledTableCell>
               <StyledTableCell align="right">Phone</StyledTableCell>
               <StyledTableCell align="right">Address</StyledTableCell>
