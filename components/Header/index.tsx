@@ -27,7 +27,7 @@ const Header: React.FC<HeaderProps> = (_: HeaderProps) => {
           >
             <h1 className={styles["header-name"]}>
               <Link itemProp="legalName" className={styles["name"]} href="/">
-                nextjs-typescript-template
+                Fleck Assistant
               </Link>
             </h1>
           </Grid>
@@ -56,7 +56,7 @@ const Header: React.FC<HeaderProps> = (_: HeaderProps) => {
               direction="row"
               wrap="nowrap"
             >
-              <Grid className={styles["menu-link-container"]}>
+              {/* <Grid className={styles["menu-link-container"]}>
                 <Link className={styles["menu-link"]} href="/resume">
                   Resume
                 </Link>
@@ -66,7 +66,7 @@ const Header: React.FC<HeaderProps> = (_: HeaderProps) => {
                 <Link className={styles["menu-link"]} href="/projects">
                   Projects
                 </Link>
-              </Grid>
+              </Grid> */}
             </Grid>
           </Grid>
         </Grid>

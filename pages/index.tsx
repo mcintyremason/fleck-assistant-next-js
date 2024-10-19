@@ -5,7 +5,7 @@ import {
   responsiveFontSizes,
 } from "@mui/material";
 
-import ContactsTable from "../components/ContactsTable";
+import { ContactsTabs } from "../components/ContactsTabs";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Layout from "../components/Layout";
@@ -48,7 +48,7 @@ const IndexPage = () => (
         itemType="http://schema.org/LocalBusiness"
       >
         <Header />
-        <ContactsTable />
+        <ContactsTabs />
         <Footer />
       </Grid2>
     </Layout>

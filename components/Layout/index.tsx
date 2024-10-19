@@ -1,5 +1,7 @@
 import Head from "next/head";
 import { ReactNode } from "react";
+import { ErrorContextProvider } from "../../contexts/ErrorContext";
+import { LoadingContextProvider } from "../../contexts/LoadingContext";
 
 type Props = {
   children?: ReactNode;
@@ -38,7 +40,9 @@ const Layout = ({
       />
       {styles}
     </Head>
-    {children}
+    <LoadingContextProvider>
+      <ErrorContextProvider>{children}</ErrorContextProvider>
+    </LoadingContextProvider>
   </div>
 );
 
