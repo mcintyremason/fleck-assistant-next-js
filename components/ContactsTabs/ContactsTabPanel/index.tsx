@@ -23,9 +23,9 @@ export function ContactsTabPanel(props: TabPanelProps) {
         (contact) =>
           value === index && (
             <Box sx={{ p: 3 }}>
-              <Typography>{contact.sales_rep_name}</Typography>
               <Typography>{contact.display_name}</Typography>
               <Typography>{contact.record_type_name}</Typography>
+              <Typography>{contact.sales_rep_name}</Typography>
               <Typography>{`${dateDiffFromToday(
                 contact.date_status_change,
               )} Days`}</Typography>
