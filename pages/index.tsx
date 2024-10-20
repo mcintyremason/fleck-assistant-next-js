@@ -39,6 +39,21 @@ theme.typography.h5 = {
   },
 };
 
+theme.typography.h6 = {
+  fontSize: ".5rem",
+  [theme.breakpoints.up("md")]: {
+    fontSize: "12px",
+  },
+};
+
+theme.typography.body1 = {
+  fontSize: ".7rem",
+  overflowWrap: "anywhere",
+  [theme.breakpoints.up("md")]: {
+    fontSize: "14px",
+  },
+};
+
 const IndexPage = () => (
   <ThemeProvider theme={theme}>
     <Layout title="nextjs-typescript-template">

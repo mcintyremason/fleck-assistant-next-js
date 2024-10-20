@@ -13,7 +13,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import * as React from "react";
 import { useFleckAssistantApi } from "../../hooks/useFleckAssistantApi";
-import { dateDiffFromToday } from "../../utils/common";
+import { dateDiffFromToday, formatAddress } from "../../utils/common";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -34,11 +34,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     border: 0,
   },
 }));
-
-function formatAddress(contact: any) {
-  return `${contact.address_line1}
-  ${contact.city}, ${contact.state_text} ${contact.zip}`;
-}
 
 type ContactsTableProps = {} & React.HTMLAttributes<HTMLDivElement> &
   Partial<Record<Breakpoint, boolean | GridSize>>;
