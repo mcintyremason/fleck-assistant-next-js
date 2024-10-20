@@ -60,7 +60,7 @@ export default function ContactAccordion(props: ContactAccordion) {
         <AccordionDetails>
           <Typography>
             <Grid2 container columns={{ xs: 12 }} flexGrow={1} spacing={1}>
-              <Grid2 flexDirection="column" size={{ xs: 4 }}>
+              <Grid2 flexDirection="column" size={{ xs: 4, md: 3 }}>
                 <Typography variant="h6">Home Address</Typography>
                 <Link
                   target="_blank"
@@ -72,14 +72,14 @@ export default function ContactAccordion(props: ContactAccordion) {
                 </Link>
               </Grid2>
 
-              <Grid2 flexDirection="column" size={{ xs: 4 }}>
+              <Grid2 flexDirection="column" size={{ xs: 4, md: 3 }}>
                 <Typography variant="h6">Home Phone</Typography>
                 <Link href={`tel:${contact.home_phone}`}>
                   <Typography>{contact.home_phone}</Typography>
                 </Link>
               </Grid2>
 
-              <Grid2 flexDirection="column" size={{ xs: 4 }} wrap="wrap">
+              <Grid2 flexDirection="column" size={{ xs: 4, md: 3 }} wrap="wrap">
                 <Typography variant="h6">Email</Typography>
                 <Link href={`mailto:${contact.email}`}>
                   <Typography>{contact.email}</Typography>
