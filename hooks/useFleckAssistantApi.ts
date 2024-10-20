@@ -1,4 +1,11 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
+import { useContext } from "react";
+import {
+  ErrorMessageContext,
+  SetErrorMessageContext,
+} from "../contexts/ErrorContext";
+import { LoadingContext, SetLoadingContext } from "../contexts/LoadingContext";
+import { ContactsResponse } from "../types/contacts";
 import { getFleckAssistantEndpoint } from "../utils/env";
 
 export interface ResponseStructure<Type> {
@@ -11,6 +18,11 @@ export interface ResponseStructure<Type> {
 }
 
 export const useFleckAssistantApi = () => {
+  const isLoading = useContext(LoadingContext);
+  const setIsLoading = useContext(SetLoadingContext);
+  const errorMessage = useContext(ErrorMessageContext);
+  const setErrorMessage = useContext(SetErrorMessageContext);
+
   const makeApiCall: <Type>(
     request: AxiosRequestConfig,
     timeout?: number,
@@ -27,6 +39,7 @@ export const useFleckAssistantApi = () => {
     };
 
     try {
+      setIsLoading(true);
       const axiosResponse: AxiosResponse = await axios(request).catch(
         (error: AxiosError) => {
           console.error(error.message, error.response);
@@ -43,12 +56,15 @@ export const useFleckAssistantApi = () => {
       response.isLoaded = true;
 
       if (response.hasError) {
+        setErrorMessage(response.errorMessage);
         console.error(response.errorMessage);
       }
     } catch (e) {
+      setErrorMessage(response.errorMessage);
       console.error(e);
       console.error(response.errorMessage);
     } finally {
+      setIsLoading(false);
       return response;
     }
   };
@@ -56,13 +72,13 @@ export const useFleckAssistantApi = () => {
   const getContactsApi = async () => {
     const baseUrl = getFleckAssistantEndpoint();
 
-    const response = await makeApiCall<any>({
+    const response = await makeApiCall<ContactsResponse>({
       url: `${baseUrl}/get-contacts`,
       method: "get",
     });
 
-    return response.data;
+    return response.data?.results ?? [];
   };
 
-  return { getContactsApi };
+  return { getContactsApi, isLoading, errorMessage };
 };

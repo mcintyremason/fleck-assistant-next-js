@@ -5,7 +5,7 @@ import {
   responsiveFontSizes,
 } from "@mui/material";
 
-import ContactsTable from "../components/ContactsTable";
+import { ContactsTabs } from "../components/ContactsTabs";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Layout from "../components/Layout";
@@ -39,6 +39,21 @@ theme.typography.h5 = {
   },
 };
 
+theme.typography.h6 = {
+  fontSize: ".5rem",
+  [theme.breakpoints.up("md")]: {
+    fontSize: "12px",
+  },
+};
+
+theme.typography.body1 = {
+  fontSize: ".7rem",
+  overflowWrap: "anywhere",
+  [theme.breakpoints.up("md")]: {
+    fontSize: "14px",
+  },
+};
+
 const IndexPage = () => (
   <ThemeProvider theme={theme}>
     <Layout title="nextjs-typescript-template">
@@ -48,7 +63,7 @@ const IndexPage = () => (
         itemType="http://schema.org/LocalBusiness"
       >
         <Header />
-        <ContactsTable />
+        <ContactsTabs />
         <Footer />
       </Grid2>
     </Layout>

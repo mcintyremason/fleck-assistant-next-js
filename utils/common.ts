@@ -34,3 +34,8 @@ export function dateDiffFromToday(epochTime: number) {
   const b = new Date(Date.now());
   return dateDiffInDays(a, b);
 }
+
+export function formatAddress(contact: any) {
+  return `${contact.address_line1}
+  ${contact.city}, ${contact.state_text} ${contact.zip}`;
+}

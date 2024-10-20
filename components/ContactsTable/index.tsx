@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import styles from "./index.module.css";
 
-import { Breakpoint, Grid2, GridSize } from "@mui/material";
+import { Breakpoint, CircularProgress, Grid2, GridSize } from "@mui/material";
 
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
@@ -13,7 +13,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import * as React from "react";
 import { useFleckAssistantApi } from "../../hooks/useFleckAssistantApi";
-import { dateDiffFromToday } from "../../utils/common";
+import { dateDiffFromToday, formatAddress } from "../../utils/common";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -35,22 +35,16 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function formatAddress(contact: any) {
-  return `${contact.address_line1}
-  ${contact.city}, ${contact.state_text} ${contact.zip}`;
-}
-
 type ContactsTableProps = {} & React.HTMLAttributes<HTMLDivElement> &
   Partial<Record<Breakpoint, boolean | GridSize>>;
 
 const ContactsTable: React.FC<ContactsTableProps> = (_) => {
-  const { getContactsApi } = useFleckAssistantApi();
+  const { getContactsApi, isLoading } = useFleckAssistantApi();
   const [contacts, setContacts] = React.useState<Array<any>>([]);
 
   const fetchContacts = React.useCallback(async () => {
     const contactsResponse = await getContactsApi();
-    console.log(contactsResponse);
-    setContacts(contactsResponse.results);
+    setContacts(contactsResponse);
   }, [getContactsApi]);
 
   React.useEffect(() => {
@@ -73,28 +67,34 @@ const ContactsTable: React.FC<ContactsTableProps> = (_) => {
               </StyledTableCell>
             </TableRow>
           </TableHead>
-          <TableBody>
-            {contacts.slice(0, 10).map((contact) => (
-              <StyledTableRow key={contact.jnid}>
-                <StyledTableCell component="th" scope="row">
-                  {contact.display_name}
-                </StyledTableCell>
-                <StyledTableCell align="right">{`${contact.email}`}</StyledTableCell>
-                <StyledTableCell align="right">
-                  {contact.home_phone}
-                </StyledTableCell>
-                <StyledTableCell align="right">
-                  {formatAddress(contact)}
-                </StyledTableCell>
-                <StyledTableCell align="right">
-                  {contact.status_name}
-                </StyledTableCell>
-                <StyledTableCell align="right">
-                  {`${dateDiffFromToday(contact.date_status_change)} Days`}
-                </StyledTableCell>
-              </StyledTableRow>
-            ))}
-          </TableBody>
+          {isLoading ? (
+            <Grid2 container justifyContent="center">
+              <CircularProgress />
+            </Grid2>
+          ) : (
+            <TableBody>
+              {contacts.slice(0, 10).map((contact) => (
+                <StyledTableRow key={contact.jnid}>
+                  <StyledTableCell component="th" scope="row">
+                    {contact.display_name}
+                  </StyledTableCell>
+                  <StyledTableCell align="right">{`${contact.email}`}</StyledTableCell>
+                  <StyledTableCell align="right">
+                    {contact.home_phone}
+                  </StyledTableCell>
+                  <StyledTableCell align="right">
+                    {formatAddress(contact)}
+                  </StyledTableCell>
+                  <StyledTableCell align="right">
+                    {contact.status_name}
+                  </StyledTableCell>
+                  <StyledTableCell align="right">
+                    {`${dateDiffFromToday(contact.date_status_change)} Days`}
+                  </StyledTableCell>
+                </StyledTableRow>
+              ))}
+            </TableBody>
+          )}
         </Table>
       </TableContainer>
     </Grid2>
