@@ -1,0 +1,9 @@
+.contact-accordion-container .job-nimbus-link-text {
+  display: none;
+}
+
+@media screen and (min-width: 769px) {
+  .contact-accordion-container .job-nimbus-link-text {
+    display: block;
+  }
+}

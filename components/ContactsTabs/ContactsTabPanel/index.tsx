@@ -22,7 +22,7 @@ export function ContactsTabPanel(props: TabPanelProps) {
         (contact) =>
           value === index && (
             <Box sx={{ p: 3 }}>
-              <ContactAccordion contact={contact} />
+              <ContactAccordion contact={contact} hideTitles={true} />
             </Box>
           ),
       )}
