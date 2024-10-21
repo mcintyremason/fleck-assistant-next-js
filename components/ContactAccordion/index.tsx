@@ -116,6 +116,7 @@ export default function ContactAccordion(props: ContactAccordion) {
                   JobNimbus Link
                 </Typography>
                 <Link
+                  target="_blank"
                   href={`https://app.jobnimbus.com/contact/${contact.jnid}`}
                 >
                   <Grid2 container>
