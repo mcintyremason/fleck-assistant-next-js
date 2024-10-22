@@ -1,21 +1,33 @@
+import styles from "./index.module.css";
+
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { Grid2 } from "@mui/material";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
+import { Grid2, useMediaQuery, useTheme } from "@mui/material";
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
+import classNames from "classnames";
 import Link from "next/link";
 import * as React from "react";
 import { Contact } from "../../types/contacts";
-import { dateDiffFromToday, formatAddress } from "../../utils/common";
+import {
+  dateDiffFromToday,
+  formatAddress,
+  getInitials,
+} from "../../utils/common";
 
 type ContactAccordion = {
   contact: Contact;
+  hideTitles?: boolean;
 };
 
 export default function ContactAccordion(props: ContactAccordion) {
-  const { contact } = props;
+  const { contact, hideTitles } = props;
   const [expanded, setExpanded] = React.useState<string | false>(false);
+  const titlesDisplay = hideTitles ? "none" : "block";
+  const theme = useTheme();
+  const isExtraSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const handleChange =
     (panel: string) => (_event: React.SyntheticEvent, isExpanded: boolean) => {
@@ -23,7 +35,7 @@ export default function ContactAccordion(props: ContactAccordion) {
     };
 
   return (
-    <div>
+    <div className={classNames(styles["contact-accordion-container"])}>
       <Accordion
         expanded={expanded === "panel1"}
         onChange={handleChange("panel1")}
@@ -34,23 +46,35 @@ export default function ContactAccordion(props: ContactAccordion) {
           id="panel1bh-header"
         >
           <Grid2 container columns={{ xs: 12 }} flexGrow={1} spacing={1}>
-            <Grid2 flexDirection="column" size={{ xs: 3 }}>
-              <Typography variant="h6">Contact Name</Typography>
+            <Grid2 flexDirection="column" size={{ xs: 4, sm: 3 }}>
+              <Typography variant="h6" display={titlesDisplay}>
+                Contact Name
+              </Typography>
               <Typography>{contact.display_name}</Typography>
             </Grid2>
 
-            <Grid2 flexDirection="column" size={{ xs: 3 }}>
-              <Typography variant="h6">Contact Type</Typography>
+            <Grid2 flexDirection="column" size={{ xs: 4, sm: 3 }}>
+              <Typography variant="h6" display={titlesDisplay}>
+                Contact Type
+              </Typography>
               <Typography>{contact.record_type_name}</Typography>
             </Grid2>
 
-            <Grid2 flexDirection="column" size={{ xs: 3 }}>
-              <Typography variant="h6">Sales Rep</Typography>
-              <Typography>{contact.sales_rep_name}</Typography>
+            <Grid2 flexDirection="column" size={{ xs: 1, sm: 3 }}>
+              <Typography variant="h6" display={titlesDisplay}>
+                Sales Rep
+              </Typography>
+              {isExtraSmallScreen ? (
+                <Typography>{getInitials(contact.sales_rep_name)}</Typography>
+              ) : (
+                <Typography>{contact.sales_rep_name}</Typography>
+              )}
             </Grid2>
 
-            <Grid2 flexDirection="column" size={{ xs: 3 }}>
-              <Typography variant="h6">Last Status Change</Typography>
+            <Grid2 flexDirection="column" size={{ xs: 3, sm: 3 }}>
+              <Typography variant="h6" display={titlesDisplay}>
+                Last Status Change
+              </Typography>
               <Typography>
                 {dateDiffFromToday(contact.date_status_change)} Days
               </Typography>
@@ -58,35 +82,81 @@ export default function ContactAccordion(props: ContactAccordion) {
           </Grid2>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
-            <Grid2 container columns={{ xs: 12 }} flexGrow={1} spacing={1}>
-              <Grid2 flexDirection="column" size={{ xs: 4, md: 3 }}>
-                <Typography variant="h6">Home Address</Typography>
-                <Link
-                  target="_blank"
-                  href={`https://www.google.com/maps/place/${formatAddress(
-                    contact,
-                  )}`}
-                >
-                  <Typography>{formatAddress(contact)}</Typography>
-                </Link>
-              </Grid2>
-
-              <Grid2 flexDirection="column" size={{ xs: 4, md: 3 }}>
-                <Typography variant="h6">Home Phone</Typography>
-                <Link href={`tel:${contact.home_phone}`}>
-                  <Typography>{contact.home_phone}</Typography>
-                </Link>
-              </Grid2>
-
-              <Grid2 flexDirection="column" size={{ xs: 4, md: 3 }} wrap="wrap">
-                <Typography variant="h6">Email</Typography>
-                <Link href={`mailto:${contact.email}`}>
-                  <Typography>{contact.email}</Typography>
-                </Link>
-              </Grid2>
+          <Grid2
+            container
+            columns={{ xs: 12 }}
+            flexGrow={1}
+            spacing={1}
+            className={classNames(styles["accordion-details-container"])}
+          >
+            <Grid2 flexDirection="column" size={{ xs: 4, sm: 3 }}>
+              <Typography variant="h6" display={titlesDisplay}>
+                Home Address
+              </Typography>
+              <Link
+                target="_blank"
+                href={`https://www.google.com/maps/place/${formatAddress(
+                  contact,
+                )}`}
+              >
+                <Typography>{formatAddress(contact)}</Typography>
+              </Link>
             </Grid2>
-          </Typography>
+
+            <Grid2 flexDirection="column" size={{ xs: 3, sm: 3 }}>
+              <Typography variant="h6" display={titlesDisplay}>
+                Home Phone
+              </Typography>
+              <Link href={`tel:${contact.home_phone}`}>
+                <Typography>{contact.home_phone}</Typography>
+              </Link>
+            </Grid2>
+
+            <Grid2 flexDirection="column" size={{ xs: 3 }} wrap="wrap">
+              <Typography variant="h6" display={titlesDisplay}>
+                Email
+              </Typography>
+              <Link href={`mailto:${contact.email}`}>
+                <Typography>{contact.email}</Typography>
+              </Link>
+            </Grid2>
+            <Grid2
+              flexDirection="column"
+              size={{ xs: 2, md: 3 }}
+              wrap="wrap"
+              justifyContent="flex-end"
+            >
+              <Typography variant="h6" display={titlesDisplay}>
+                JobNimbus Link
+              </Typography>
+              <Link
+                target="_blank"
+                href={`https://app.jobnimbus.com/contact/${contact.jnid}`}
+              >
+                <Grid2
+                  container
+                  className={classNames(styles["job-nimbus-link-container"])}
+                >
+                  <Grid2
+                    size={{ xs: 6, sm: 5, md: 4, lg: 3 }}
+                    className={classNames(styles["job-nimbus-link-text"])}
+                  >
+                    <Typography>JobNimbus</Typography>
+                  </Grid2>
+                  <Grid2 size={{ xs: 1 }} justifyContent="end">
+                    <OpenInNewIcon />
+                  </Grid2>
+                </Grid2>
+              </Link>
+            </Grid2>
+          </Grid2>
+          <Grid2
+            container
+            columns={{ xs: 12 }}
+            flexGrow={1}
+            spacing={1}
+            padding={"0 24px 0 0"}
+          ></Grid2>
         </AccordionDetails>
       </Accordion>
     </div>

@@ -47,7 +47,7 @@ theme.typography.h6 = {
 };
 
 theme.typography.body1 = {
-  fontSize: ".7rem",
+  fontSize: ".8rem",
   overflowWrap: "anywhere",
   [theme.breakpoints.up("md")]: {
     fontSize: "14px",
