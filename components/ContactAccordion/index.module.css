@@ -1,9 +1,25 @@
+.contact-accordion-container .accordion-details-container {
+  padding: 0;
+}
+
+.contact-accordion-container .job-nimbus-link-container {
+  justify-content: center;
+}
+
 .contact-accordion-container .job-nimbus-link-text {
   display: none;
 }
 
 @media screen and (min-width: 769px) {
+  .contact-accordion-container .accordion-details-container {
+    padding: 0 24px 0 0;
+  }
+
   .contact-accordion-container .job-nimbus-link-text {
     display: block;
+  }
+
+  .contact-accordion-container .job-nimbus-link-container {
+    /* justify-content: flex-start; */
   }
 }

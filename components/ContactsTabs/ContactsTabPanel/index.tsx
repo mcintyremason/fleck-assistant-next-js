@@ -21,7 +21,7 @@ export function ContactsTabPanel(props: TabPanelProps) {
       {contacts.map(
         (contact) =>
           value === index && (
-            <Box sx={{ p: 3 }}>
+            <Box key={`contact-accordion-${index}`}>
               <ContactAccordion contact={contact} hideTitles={true} />
             </Box>
           ),

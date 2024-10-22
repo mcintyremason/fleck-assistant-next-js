@@ -39,3 +39,10 @@ export function formatAddress(contact: any) {
   return `${contact.address_line1}
   ${contact.city}, ${contact.state_text} ${contact.zip}`;
 }
+
+export function getInitials(name: string) {
+  return name
+    .split(" ")
+    .map((word) => word[0])
+    .join("");
+}
