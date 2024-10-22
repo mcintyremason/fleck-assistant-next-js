@@ -60,7 +60,7 @@ export default function ContactAccordion(props: ContactAccordion) {
               <Typography>{contact.record_type_name}</Typography>
             </Grid2>
 
-            <Grid2 flexDirection="column" size={{ xs: 1, sm: 3 }}>
+            <Grid2 flexDirection="column" size={{ xs: 2, sm: 3 }}>
               <Typography variant="h6" display={titlesDisplay}>
                 Sales Rep
               </Typography>
@@ -71,7 +71,7 @@ export default function ContactAccordion(props: ContactAccordion) {
               )}
             </Grid2>
 
-            <Grid2 flexDirection="column" size={{ xs: 3, sm: 3 }}>
+            <Grid2 flexDirection="column" size={{ xs: 2, sm: 3 }}>
               <Typography variant="h6" display={titlesDisplay}>
                 Last Status Change
               </Typography>
@@ -126,9 +126,6 @@ export default function ContactAccordion(props: ContactAccordion) {
               wrap="wrap"
               justifyContent="flex-end"
             >
-              <Typography variant="h6" display={titlesDisplay}>
-                JobNimbus Link
-              </Typography>
               <Link
                 target="_blank"
                 href={`https://app.jobnimbus.com/contact/${contact.jnid}`}

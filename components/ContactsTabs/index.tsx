@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Grid2, Tab, Tabs } from "@mui/material";
+import { Box, Grid2, LinearProgress, Skeleton, Tab, Tabs } from "@mui/material";
 import React from "react";
 import { useFleckAssistantApi } from "../../hooks/useFleckAssistantApi";
 import { Contact, StatusNames } from "../../types/contacts";
@@ -40,7 +40,11 @@ export const ContactsTabs: React.FC<ContactsTabs> = (_) => {
       </Tabs>
       {isLoading ? (
         <Grid2 container justifyContent="center">
-          <CircularProgress />
+          {/* <CircularProgress /> */}
+          <Box sx={{ width: "100%" }}>
+            <LinearProgress />
+          </Box>
+          <Skeleton animation="wave" width="95%" height={80} />
         </Grid2>
       ) : (
         Object.values(StatusNames).map((status, index) => {
