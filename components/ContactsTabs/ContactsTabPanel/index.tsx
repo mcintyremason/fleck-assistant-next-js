@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, useMediaQuery, useTheme } from "@mui/material";
 import { Contact } from "../../../types/contacts";
 import ContactAccordion from "../../ContactAccordion";
 
@@ -10,6 +10,8 @@ type TabPanelProps = {
 
 export function ContactsTabPanel(props: TabPanelProps) {
   const { value, index, contacts } = props;
+  const theme = useTheme();
+  const isExtraSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
     <div
@@ -22,7 +24,10 @@ export function ContactsTabPanel(props: TabPanelProps) {
         (contact) =>
           value === index && (
             <Box key={`contact-accordion-${index}`}>
-              <ContactAccordion contact={contact} hideTitles={true} />
+              <ContactAccordion
+                contact={contact}
+                hideTitles={isExtraSmallScreen}
+              />
             </Box>
           ),
       )}

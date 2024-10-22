@@ -106,7 +106,6 @@ export type Contact = {
 };
 
 export enum StatusNames {
-  ACTIVE = "Active",
   INCOMING_RESIDENTIAL_RETAIL = "Incoming Residential Retail",
   CUSTOMER_CONTACTED = "Customer Contacted",
   ESTIMATE_SCHEDULED = "Estimate Scheduled",
@@ -123,4 +122,5 @@ export enum StatusNames {
   THANK_YOU_EMAIL_REVIEW = "Thank You Email/Review",
   WARRANTY_SUBMITTAL = "Warranty Submittal",
   PAID_AND_CLOSED = "Paid & Closed",
+  ACTIVE = "Active",
 }
