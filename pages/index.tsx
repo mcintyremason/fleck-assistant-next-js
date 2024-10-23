@@ -5,7 +5,8 @@ import {
   responsiveFontSizes,
 } from "@mui/material";
 
-import { ContactsTabs } from "../components/ContactsTabs";
+import React from "react";
+import ContactsTabs from "../components/ContactsTabs";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Layout from "../components/Layout";
@@ -54,20 +55,22 @@ theme.typography.body1 = {
   },
 };
 
-const IndexPage = () => (
-  <ThemeProvider theme={theme}>
-    <Layout title="nextjs-typescript-template">
-      <Grid2
-        className="app height-full"
-        itemScope
-        itemType="http://schema.org/LocalBusiness"
-      >
-        <Header />
-        <ContactsTabs />
-        <Footer />
-      </Grid2>
-    </Layout>
-  </ThemeProvider>
-);
+const IndexPage: React.FC = () => {
+  return (
+    <ThemeProvider theme={theme}>
+      <Layout title="nextjs-typescript-template">
+        <Grid2
+          className="app height-full"
+          itemScope
+          itemType="http://schema.org/LocalBusiness"
+        >
+          <Header />
+          <ContactsTabs />
+          <Footer />
+        </Grid2>
+      </Layout>
+    </ThemeProvider>
+  );
+};
 
 export default IndexPage;
