@@ -35,12 +35,17 @@ export default function ContactAccordion(props: ContactAccordion) {
     };
 
   return (
-    <div className={classNames(styles["contact-accordion-container"])}>
+    <div
+      key={`contact-accordion-wrapper-${contact.jnid}`}
+      className={classNames(styles["contact-accordion-container"])}
+    >
       <Accordion
+        key={`contact-accordion-${contact.jnid}`}
         expanded={expanded === "panel1"}
         onChange={handleChange("panel1")}
       >
         <AccordionSummary
+          key={`contact-accordion-summary-${contact.jnid}`}
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1bh-content"
           id="panel1bh-header"
@@ -81,7 +86,7 @@ export default function ContactAccordion(props: ContactAccordion) {
             </Grid2>
           </Grid2>
         </AccordionSummary>
-        <AccordionDetails>
+        <AccordionDetails key={`contact-accordion-details-${contact.jnid}`}>
           <Grid2
             container
             columns={{ xs: 12 }}
@@ -112,39 +117,43 @@ export default function ContactAccordion(props: ContactAccordion) {
               </Link>
             </Grid2>
 
-            <Grid2 flexDirection="column" size={{ xs: 3 }} wrap="wrap">
-              <Typography variant="h6" display={titlesDisplay}>
-                Email
-              </Typography>
-              <Link href={`mailto:${contact.email}`}>
-                <Typography>{contact.email}</Typography>
-              </Link>
+            <Grid2 container wrap="wrap" size={{ xs: 3 }}>
+              <Grid2 flexDirection="column" size={{ xs: 12 }}>
+                <Typography variant="h6" display={titlesDisplay}>
+                  Email
+                </Typography>
+                <Link href={`mailto:${contact.email}`}>
+                  <Typography>{contact.email}</Typography>
+                </Link>
+              </Grid2>
             </Grid2>
             <Grid2
-              flexDirection="column"
-              size={{ xs: 2, md: 3 }}
+              container
               wrap="wrap"
+              size={{ xs: 2, md: 3 }}
               justifyContent="flex-end"
             >
-              <Link
-                target="_blank"
-                href={`https://app.jobnimbus.com/contact/${contact.jnid}`}
-              >
-                <Grid2
-                  container
-                  className={classNames(styles["job-nimbus-link-container"])}
+              <Grid2 size={{ xs: 12 }} flexDirection="column">
+                <Link
+                  target="_blank"
+                  href={`https://app.jobnimbus.com/contact/${contact.jnid}`}
                 >
                   <Grid2
-                    size={{ xs: 6, sm: 5, md: 4, lg: 3 }}
-                    className={classNames(styles["job-nimbus-link-text"])}
+                    container
+                    className={classNames(styles["job-nimbus-link-container"])}
                   >
-                    <Typography>JobNimbus</Typography>
+                    <Grid2
+                      size={{ xs: 6, sm: 5, md: 4, lg: 3 }}
+                      className={classNames(styles["job-nimbus-link-text"])}
+                    >
+                      <Typography>JobNimbus</Typography>
+                    </Grid2>
+                    <Grid2 size={{ xs: 1 }} justifyContent="end">
+                      <OpenInNewIcon />
+                    </Grid2>
                   </Grid2>
-                  <Grid2 size={{ xs: 1 }} justifyContent="end">
-                    <OpenInNewIcon />
-                  </Grid2>
-                </Grid2>
-              </Link>
+                </Link>
+              </Grid2>
             </Grid2>
           </Grid2>
           <Grid2

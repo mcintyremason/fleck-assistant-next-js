@@ -19,7 +19,6 @@ export default class JobNimbusApi {
       const response = await this.jobnimbusAxiosInstance.get(
         `/api1/contacts?size=${size}`,
       );
-      console.log(response.data);
 
       return response.data;
     } catch (error) {
