@@ -16,24 +16,26 @@ export function ContactsTabPanel(props: TabPanelProps) {
   const { value, index, contacts } = props;
 
   return (
-    <TabPanel
-      value={index}
-      key={`tab-panel-${index}`}
-      hidden={value !== index}
-      className={classNames(styles["contacts-tab-panel"])}
-    >
-      {contacts.map(
-        (contact) =>
-          value === index && (
-            <Box key={`contact-accordion-wrapper-${contact.jnid}`}>
-              <ContactAccordion
-                key={`contact-accordion-${contact.jnid}`}
-                contact={contact}
-                hideTitles={true}
-              />
-            </Box>
-          ),
-      )}
-    </TabPanel>
+    <Box className={classNames(styles["contacts-tab-panel-wrapper"])}>
+      <TabPanel
+        value={index}
+        key={`tab-panel-${index}`}
+        hidden={value !== index}
+        className={classNames(styles["contacts-tab-panel"])}
+      >
+        {contacts.map(
+          (contact) =>
+            value === index && (
+              <Box key={`contact-accordion-wrapper-${contact.jnid}`}>
+                <ContactAccordion
+                  key={`contact-accordion-${contact.jnid}`}
+                  contact={contact}
+                  hideTitles={true}
+                />
+              </Box>
+            ),
+        )}
+      </TabPanel>
+    </Box>
   );
 }
