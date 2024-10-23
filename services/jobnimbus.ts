@@ -14,9 +14,11 @@ export default class JobNimbusApi {
     }
   }
 
-  async getContacts() {
+  async getContacts(size: number = 10000) {
     try {
-      const response = await this.jobnimbusAxiosInstance.get("/api1/contacts");
+      const response = await this.jobnimbusAxiosInstance.get(
+        `/api1/contacts?size=${size}`,
+      );
       console.log(response.data);
 
       return response.data;

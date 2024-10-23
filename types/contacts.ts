@@ -106,11 +106,11 @@ export type Contact = {
 };
 
 export enum StatusNames {
+  INCOMING_ISSUE = "Incoming Issue",
   INCOMING_RESIDENTIAL_RETAIL = "Incoming Residential Retail",
   CUSTOMER_CONTACTED = "Customer Contacted",
   ESTIMATE_SCHEDULED = "Estimate Scheduled",
   ESTIMATE_SENT = "Estimate Sent",
-  PROJECT_LIMBO = "Project Limbo",
   SOLD = "Sold",
   PROJECT_PLANNING = "Project Planning",
   PRODUCTION_SCHEDULED = "Production Scheduled",
@@ -118,9 +118,11 @@ export enum StatusNames {
   PROJECT_COMPLETED = "Project Completed",
   PRODUCTION_LIMBO = "Production Limbo",
   PENDING_PAYMENTS = "Pending Payments",
-  DID_NOT_PAY = "Did Not Pay",
   THANK_YOU_EMAIL_REVIEW = "Thank You Email/Review",
   WARRANTY_SUBMITTAL = "Warranty Submittal",
   PAID_AND_CLOSED = "Paid & Closed",
   ACTIVE = "Active",
+  ISSUE_RESOLVED = "Issue Resolved",
+  PROJECT_LIMBO = "Project Limbo",
+  DID_NOT_PAY = "Did Not Pay",
 }
