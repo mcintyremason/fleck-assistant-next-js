@@ -40,7 +40,6 @@ export const ContactsTabs: React.FC<ContactsTabs> = (_) => {
       </Tabs>
       {isLoading ? (
         <Grid2 container justifyContent="center">
-          {/* <CircularProgress /> */}
           <Box sx={{ width: "100%" }}>
             <LinearProgress />
           </Box>
