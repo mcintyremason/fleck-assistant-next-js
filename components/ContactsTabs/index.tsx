@@ -19,6 +19,7 @@ const ContactsTabs: React.FC<ContactsTabsProps> = (_) => {
 
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue.toString());
+    sessionStorage.setItem("contacts-tab", newValue.toString());
   };
 
   const getContactsByStatus = (
@@ -32,6 +33,10 @@ const ContactsTabs: React.FC<ContactsTabsProps> = (_) => {
 
   React.useEffect(() => {
     fetchContacts();
+    const contactsTab = sessionStorage.getItem("contacts-tab");
+    if (contactsTab) {
+      setValue(contactsTab);
+    }
   }, []);
 
   return (
