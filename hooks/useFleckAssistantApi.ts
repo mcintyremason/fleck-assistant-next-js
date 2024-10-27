@@ -44,7 +44,7 @@ export const useFleckAssistantApi = () => {
         (error: AxiosError) => {
           console.error(error.message, error.response);
           // Setting the error manually as external response obj does not have it
-          response.errorMessage = `Please contact Support for help - ${error.message}`;
+          response.errorMessage = `${error.message}. Please contact Support for help.`;
           return error.response;
         },
       );
@@ -52,7 +52,7 @@ export const useFleckAssistantApi = () => {
       response.url = axiosResponse?.request.responseURL;
       response.data = axiosResponse?.data;
       response.status = axiosResponse?.status;
-      response.hasError = axiosResponse?.status > 399;
+      response.hasError = axiosResponse?.status > 299;
       response.isLoaded = true;
 
       if (response.hasError) {
