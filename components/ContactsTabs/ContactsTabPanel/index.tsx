@@ -5,7 +5,7 @@ import { Box, Grid2, LinearProgress, Skeleton } from "@mui/material";
 import classNames from "classnames";
 import React from "react";
 import { useFleckAssistantApi } from "../../../hooks/useFleckAssistantApi";
-import { Contact } from "../../../types/contacts";
+import { ContactType } from "../../../types/contacts";
 import { sortContactsByDate } from "../../../utils/contacts";
 import ContactAccordion from "../../ContactAccordion";
 
@@ -19,7 +19,7 @@ type TabPanelProps = {
 export function ContactsTabPanel(props: TabPanelProps) {
   const { value, index, isActive, status } = props;
   const { getContactsApi, isLoading } = useFleckAssistantApi();
-  const [contacts, setContacts] = React.useState<Array<Contact>>([]);
+  const [contacts, setContacts] = React.useState<Array<ContactType>>([]);
 
   const fetchContacts = React.useCallback(async () => {
     const contactsFilter = {
@@ -43,7 +43,7 @@ export function ContactsTabPanel(props: TabPanelProps) {
     }
   }, [isActive]);
 
-  return isLoading && isActive ? (
+  return isActive && isLoading ? (
     <Grid2 container justifyContent="center">
       <Box sx={{ width: "100%" }}>
         <LinearProgress />

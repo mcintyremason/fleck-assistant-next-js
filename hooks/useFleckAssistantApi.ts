@@ -81,5 +81,16 @@ export const useFleckAssistantApi = () => {
     return response.data?.results ?? [];
   };
 
-  return { getContactsApi, isLoading, errorMessage };
+  const getContactByIdApi = async (id: string) => {
+    const baseUrl = getFleckAssistantEndpoint();
+
+    const response = await makeApiCall<ContactsResponse>({
+      url: `${baseUrl}/get-contacts/${id}`,
+      method: "get",
+    });
+
+    return response.data ?? {};
+  };
+
+  return { getContactsApi, getContactByIdApi, isLoading, errorMessage };
 };
