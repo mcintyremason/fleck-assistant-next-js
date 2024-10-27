@@ -23,7 +23,7 @@ type ContactProps = {
 
 const Contact: React.FC<ContactProps> = (props: ContactProps) => {
   const { id } = props;
-  const { getContactByIdApi, isLoading } = useFleckAssistantApi();
+  const { getContactByIdApi, isLoading, errorMessage } = useFleckAssistantApi();
 
   const [contact, setContact] = React.useState<ContactType>(null);
 
@@ -38,7 +38,15 @@ const Contact: React.FC<ContactProps> = (props: ContactProps) => {
     fetchContact();
   }, [id]);
 
-  return contact === null || isLoading ? (
+  console.log(errorMessage);
+
+  return errorMessage ? (
+    <Grid2 container justifyContent="center">
+      <Box padding="20px">
+        <Typography variant="h4">{errorMessage}</Typography>
+      </Box>
+    </Grid2>
+  ) : contact === null || isLoading ? (
     <Grid2 container justifyContent="center">
       <Box sx={{ width: "100%" }}>
         <LinearProgress />
@@ -161,7 +169,7 @@ const Contact: React.FC<ContactProps> = (props: ContactProps) => {
               className={classNames(styles["contact-details-row"])}
             >
               <Grid2 container wrap="wrap" size={{ xs: 12 }}>
-                <Grid2 flexDirection="column" size={{ xs: 3 }}>
+                <Grid2 flexDirection="column" size={{ xs: 9 }}>
                   <Typography
                     variant="h5"
                     className={classNames(styles["contact-details-title"])}
@@ -173,7 +181,7 @@ const Contact: React.FC<ContactProps> = (props: ContactProps) => {
                 <Grid2
                   container
                   wrap="wrap"
-                  size={{ xs: 9 }}
+                  size={{ xs: 3 }}
                   justifyContent="flex-end"
                 >
                   <Grid2 container>
