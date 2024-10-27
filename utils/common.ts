@@ -41,8 +41,12 @@ export function formatAddress(contact: any) {
 }
 
 export function getInitials(name: string) {
-  return name
-    .split(" ")
-    .map((word) => word[0])
-    .join("");
+  if (name) {
+    return name
+      .split(" ")
+      .map((word) => word[0])
+      .join("");
+  } else {
+    return name;
+  }
 }
