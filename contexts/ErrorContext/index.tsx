@@ -3,8 +3,6 @@ import { createContext, useState } from "react";
 export const ErrorMessageContext = createContext(null);
 export const SetErrorMessageContext = createContext(null);
 
-const DEFAULT_ERROR_MESSAGE = "Error!";
-
 type ErrorContextProps = {
   children?: React.ReactNode;
 };
@@ -12,9 +10,7 @@ type ErrorContextProps = {
 export const ErrorContextProvider: React.FC<ErrorContextProps> = ({
   children,
 }) => {
-  const [errorMessage, setErrorMessage] = useState<string>(
-    DEFAULT_ERROR_MESSAGE,
-  );
+  const [errorMessage, setErrorMessage] = useState<string>(undefined);
 
   return (
     <ErrorMessageContext.Provider value={errorMessage}>
