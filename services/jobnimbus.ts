@@ -14,13 +14,27 @@ export default class JobNimbusApi {
     }
   }
 
-  async getContacts(size: number = 10000) {
+  async getContacts(filter: string | undefined, size: number = 10000) {
     try {
-      const response = await this.jobnimbusAxiosInstance.get(
-        `/api1/contacts?size=${size}`,
-      );
+      let response = undefined;
 
-      return response.data;
+      const encodedJsonFilter = encodeURIComponent(filter);
+
+      if (filter) {
+        response = await this.jobnimbusAxiosInstance.get(
+          `/api1/contacts?filter=${encodedJsonFilter}&size=${size}`,
+        );
+      } else {
+        response = await this.jobnimbusAxiosInstance.get(
+          `/api1/contacts?size=${size}`,
+        );
+      }
+
+      if (response) {
+        return response?.data;
+      } else {
+        throw Error("Error: Response not valid");
+      }
     } catch (error) {
       console.error(error);
     }
