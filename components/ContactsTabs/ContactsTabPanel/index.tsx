@@ -6,6 +6,7 @@ import classNames from "classnames";
 import React from "react";
 import { useFleckAssistantApi } from "../../../hooks/useFleckAssistantApi";
 import { Contact } from "../../../types/contacts";
+import { sortContactsByDate } from "../../../utils/contacts";
 import ContactAccordion from "../../ContactAccordion";
 
 type TabPanelProps = {
@@ -32,7 +33,8 @@ export function ContactsTabPanel(props: TabPanelProps) {
     };
 
     const contactsResponse = await getContactsApi(contactsFilter);
-    setContacts(contactsResponse);
+    const sortedContacts = sortContactsByDate(contactsResponse);
+    setContacts(sortedContacts);
   }, [getContactsApi]);
 
   React.useEffect(() => {
