@@ -69,11 +69,12 @@ export const useFleckAssistantApi = () => {
     }
   };
 
-  const getContactsApi = async () => {
+  const getContactsApi = async (filter: any | undefined = undefined) => {
     const baseUrl = getFleckAssistantEndpoint();
+    const encodedJsonFilter = encodeURIComponent(JSON.stringify(filter));
 
     const response = await makeApiCall<ContactsResponse>({
-      url: `${baseUrl}/get-contacts`,
+      url: `${baseUrl}/get-contacts?filter=${encodedJsonFilter}`,
       method: "get",
     });
 
