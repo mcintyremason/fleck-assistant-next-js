@@ -1,9 +1,9 @@
 export type ContactsResponse = {
   count: number;
-  results: Array<Contact>;
+  results: Array<ContactType>;
 };
 
-export type Contact = {
+export type ContactType = {
   type?: string;
   merged?: null;
   recid?: number;

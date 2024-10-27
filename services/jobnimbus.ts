@@ -39,4 +39,26 @@ export default class JobNimbusApi {
       console.error(error);
     }
   }
+
+  async getContactById(id: string) {
+    try {
+      let response = undefined;
+
+      if (id) {
+        response = await this.jobnimbusAxiosInstance.get(
+          `/api1/contacts/${id}`,
+        );
+      } else {
+        throw Error("Error: ID Required");
+      }
+
+      if (response) {
+        return response?.data;
+      } else {
+        throw Error("Error: Response not valid");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }

@@ -10,7 +10,7 @@ import Typography from "@mui/material/Typography";
 import classNames from "classnames";
 import Link from "next/link";
 import * as React from "react";
-import { Contact } from "../../types/contacts";
+import { ContactType } from "../../types/contacts";
 import {
   dateDiffFromToday,
   formatAddress,
@@ -18,7 +18,7 @@ import {
 } from "../../utils/common";
 
 type ContactAccordion = {
-  contact: Contact;
+  contact: ContactType;
   hideTitles?: boolean;
 };
 
@@ -55,7 +55,9 @@ export default function ContactAccordion(props: ContactAccordion) {
               <Typography variant="h6" display={titlesDisplay}>
                 Contact Name
               </Typography>
-              <Typography>{contact.display_name}</Typography>
+              <Link href={`/contacts/${contact.jnid}`}>
+                <Typography>{contact.display_name}</Typography>
+              </Link>
             </Grid2>
 
             <Grid2 flexDirection="column" size={{ xs: 4, sm: 3 }}>

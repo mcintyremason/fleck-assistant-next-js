@@ -1,11 +1,10 @@
 import { Grid2, ThemeProvider } from "@mui/material";
 
 import React from "react";
-import ContactsTabs from "../components/ContactsTabs";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
-import Layout from "../components/Layout";
-import originalTheme from "../themes/original-theme";
+import Footer from "../../components/Footer";
+import Header from "../../components/Header";
+import Layout from "../../components/Layout";
+import originalTheme from "../../themes/original-theme";
 
 const IndexPage: React.FC = () => {
   return (
@@ -17,7 +16,6 @@ const IndexPage: React.FC = () => {
           itemType="http://schema.org/LocalBusiness"
         >
           <Header />
-          <ContactsTabs />
           <Footer />
         </Grid2>
       </Layout>
