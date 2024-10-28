@@ -14,7 +14,7 @@ const ContactsSearch: React.FC<ContactsSearchProps> = (_) => {
     setSearchValue(event.target.value);
   };
 
-  const { getContactsApi, isLoading } = useFleckAssistantApi();
+  const { getContactsApi } = useFleckAssistantApi();
   const [contacts, setContacts] = React.useState<Array<ContactType>>([]);
 
   const fetchContacts = React.useCallback(
