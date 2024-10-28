@@ -10,7 +10,7 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
   try {
     const response = await jobNimbusApi.getContacts(filter);
 
-    res.status(response.status).json(response);
+    res.status(response.status).json(response.data);
   } catch (err: any) {
     res
       .status(err.status)
