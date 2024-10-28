@@ -31,7 +31,7 @@ export default class JobNimbusApi {
       }
 
       if (response) {
-        return response?.data;
+        return response;
       } else {
         throw Error("Error: Response not valid");
       }
@@ -53,7 +53,7 @@ export default class JobNimbusApi {
       }
 
       if (response) {
-        return response?.data;
+        return response;
       } else {
         throw Error("Error: Response not valid");
       }
