@@ -92,11 +92,13 @@ const ContactsSearch: React.FC<ContactsSearchProps> = (_) => {
         const firstNameResponse = await getContactsApi(firstNameFilter);
         const lastNameResponse = await getContactsApi(lastNameFilter);
         const displayNameResponse = await getContactsApi(displayNameFilter);
+        const addressResponse = await getContactsApi(addressFilter);
         const cityResponse = await getContactsApi(cityFilter);
         allContacts = [
           ...firstNameResponse,
           ...lastNameResponse,
           ...displayNameResponse,
+          ...addressResponse,
           ...cityResponse,
         ];
       }
