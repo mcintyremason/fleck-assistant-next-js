@@ -76,7 +76,7 @@ const ContactsTable: React.FC<ContactsTableProps> = (props) => {
             </Grid2>
           ) : (
             <TableBody>
-              {contacts.slice(0, 10).map((contact) => (
+              {contacts.map((contact) => (
                 <StyledTableRow key={contact.jnid}>
                   <Link
                     href={`/contacts/${contact.jnid}`}

@@ -3,6 +3,7 @@ import { Grid2, InputBase, Paper } from "@mui/material";
 import React from "react";
 import { useFleckAssistantApi } from "../../hooks/useFleckAssistantApi";
 import { ContactType } from "../../types/contacts";
+import { sortContactsByDate } from "../../utils/contacts";
 import ContactsTable from "../ContactsTable";
 
 type ContactsSearchProps = {};
@@ -18,19 +19,97 @@ const ContactsSearch: React.FC<ContactsSearchProps> = (_) => {
   const [contacts, setContacts] = React.useState<Array<ContactType>>([]);
 
   const fetchContacts = React.useCallback(
-    async (name: string) => {
-      console.log("fetchContacts");
-      const contactsFilter = {
+    async (value: string) => {
+      const hasDigitRegex = /\d+/g;
+      const hasDigit = value.match(hasDigitRegex);
+
+      const firstNameFilter = {
         must: [
           {
-            term: {
-              first_name: name,
+            regexp: {
+              first_name: `.*${value}.*`,
             },
           },
         ],
       };
-      const contactsResponse = await getContactsApi(contactsFilter);
-      setContacts(contactsResponse);
+
+      const lastNameFilter = {
+        must: [
+          {
+            regexp: {
+              first_name: `.*${value}.*`,
+            },
+          },
+        ],
+      };
+
+      const displayNameFilter = {
+        must: [
+          {
+            regexp: {
+              display_name: `.*${value}.*`,
+            },
+          },
+        ],
+      };
+
+      const phoneNumberFilter = {
+        must: [
+          {
+            regexp: {
+              home_phone: `.*${value}.*`,
+            },
+          },
+        ],
+      };
+
+      const addressFilter = {
+        must: [
+          {
+            regexp: {
+              address_line1: `.*${value}.*`,
+            },
+          },
+        ],
+      };
+
+      const cityFilter = {
+        must: [
+          {
+            regexp: {
+              city: `.*${value}.*`,
+            },
+          },
+        ],
+      };
+
+      let allContacts = [];
+      if (hasDigit) {
+        const phoneNumberResponse = await getContactsApi(phoneNumberFilter);
+        const addressResponse = await getContactsApi(addressFilter);
+        allContacts = [...phoneNumberResponse, ...addressResponse];
+      } else {
+        const firstNameResponse = await getContactsApi(firstNameFilter);
+        const lastNameResponse = await getContactsApi(lastNameFilter);
+        const displayNameResponse = await getContactsApi(displayNameFilter);
+        const cityResponse = await getContactsApi(cityFilter);
+        allContacts = [
+          ...firstNameResponse,
+          ...lastNameResponse,
+          ...displayNameResponse,
+          ...cityResponse,
+        ];
+      }
+
+      // const uniqueContacts = Array.from(new Set(allContacts));
+      const uniqueContacts = [];
+      allContacts.forEach((contact) => {
+        if (!uniqueContacts.find((c) => c.jnid === contact.jnid)) {
+          uniqueContacts.push(contact);
+        }
+      });
+
+      setContacts(sortContactsByDate(uniqueContacts));
     },
     [getContactsApi],
   );
