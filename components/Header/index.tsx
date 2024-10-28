@@ -1,4 +1,4 @@
-import { AppBar, Grid, Link } from "@mui/material";
+import { AppBar, Grid, Grid2, Link } from "@mui/material";
 import classNames from "classnames";
 import React, { useState } from "react";
 import HamburgerNav from "../HamburgerNav";
@@ -49,25 +49,19 @@ const Header: React.FC<HeaderProps> = (_: HeaderProps) => {
               hambugerActive ? styles["active"] : "",
             )}
           >
-            <Grid
+            <Grid2
               className={styles["menu"]}
               container
               justifyContent="center"
               direction="row"
               wrap="nowrap"
             >
-              {/* <Grid className={styles["menu-link-container"]}>
-                <Link className={styles["menu-link"]} href="/resume">
-                  Resume
+              <Grid2 className={styles["menu-link-container"]}>
+                <Link className={styles["menu-link"]} href="/contacts">
+                  Contacts
                 </Link>
-              </Grid>
-              <Grid className={styles["menu-link-divider"]}>|</Grid>
-              <Grid className={styles["menu-link-container"]}>
-                <Link className={styles["menu-link"]} href="/projects">
-                  Projects
-                </Link>
-              </Grid> */}
-            </Grid>
+              </Grid2>
+            </Grid2>
           </Grid>
         </Grid>
       </Grid>

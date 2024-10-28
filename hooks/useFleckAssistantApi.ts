@@ -18,6 +18,8 @@ export interface ResponseStructure<Type> {
 }
 
 export const useFleckAssistantApi = () => {
+  // TODO: Find way to separate multiple calls to API
+  // isLoading has unexpected behavior if two calls are made to API in short succession
   const isLoading = useContext(LoadingContext);
   const setIsLoading = useContext(SetLoadingContext);
   const errorMessage = useContext(ErrorMessageContext);
