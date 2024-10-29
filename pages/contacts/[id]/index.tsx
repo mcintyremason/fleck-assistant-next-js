@@ -13,7 +13,7 @@ const IndexPage: React.FC = () => {
   const contactId = router.query.id as string;
   return (
     <ThemeProvider theme={originalTheme}>
-      <Layout title="nextjs-typescript-template">
+      <Layout title="FRC Assistant">
         <Grid2
           className="app height-full"
           itemScope

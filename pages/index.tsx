@@ -10,7 +10,7 @@ import originalTheme from "../themes/original-theme";
 const IndexPage: React.FC = () => {
   return (
     <ThemeProvider theme={originalTheme}>
-      <Layout title="nextjs-typescript-template">
+      <Layout title="FRC Assistant">
         <Grid2
           className="app height-full"
           itemScope
