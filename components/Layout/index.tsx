@@ -25,6 +25,11 @@ const Layout = ({
         href="/img/icons/favicon-1/rwf.png"
         type="image/png"
       />
+      <link
+        rel="apple-touch-startup-image"
+        href="/img/icons/favicon-1/rwf.png"
+      />
+      <meta name="apple-mobile-web-app-title" content="Fleck Assistant"></meta>
       <meta name="description" content="More than only a website..." />
       <link type="text/css" rel="preload" as="style" href="/css/app.css" />
       <link type="text/css" rel="stylesheet" href="/css/app.css" />
