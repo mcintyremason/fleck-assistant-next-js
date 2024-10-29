@@ -20,10 +20,10 @@ const Layout = ({
       <meta charSet="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="manifest" href="/manifest.json" />
-      <link rel="icon" href="/rwf.png" type="image/png" />
-      <link rel="shortcut icon" href="/rwf.png" type="image/png" />
-      <link rel="apple-touch-icon" href="/rwf180.png" type="image/png" />
-      <link rel="mask-icon" href="/rwf180.png" />
+      <link rel="icon" href="/frc32.png" type="image/png" />
+      <link rel="shortcut icon" href="/frc32.png" type="image/png" />
+      <link rel="apple-touch-icon" href="/frc180.png" type="image/png" />
+      <link rel="mask-icon" href="/frc180.png" />
       <meta name="apple-mobile-web-app-title" content="Fleck Assistant" />
       <meta name="description" content="More than only a website..." />
       <link type="text/css" rel="preload" as="style" href="/css/app.css" />
