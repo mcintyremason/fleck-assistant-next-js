@@ -20,6 +20,11 @@ const Layout = ({
       <meta charSet="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="icon" type="image/png" href="/img/icons/favicon-1/rwf.png" />
+      <link
+        rel="apple-touch-icon"
+        href="/img/icons/favicon-1/rwf.png"
+        type="image/png"
+      />
       <meta name="description" content="More than only a website..." />
       <link type="text/css" rel="preload" as="style" href="/css/app.css" />
       <link type="text/css" rel="stylesheet" href="/css/app.css" />
