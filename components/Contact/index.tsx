@@ -169,7 +169,7 @@ const Contact: React.FC<ContactProps> = (props: ContactProps) => {
               className={classNames(styles["contact-details-row"])}
             >
               <Grid2 container wrap="wrap" size={{ xs: 12 }}>
-                <Grid2 flexDirection="column" size={{ xs: 9 }}>
+                <Grid2 flexDirection="column" size={{ xs: 6 }}>
                   <Typography
                     variant="h5"
                     className={classNames(styles["contact-details-title"])}
@@ -181,7 +181,7 @@ const Contact: React.FC<ContactProps> = (props: ContactProps) => {
                 <Grid2
                   container
                   wrap="wrap"
-                  size={{ xs: 3 }}
+                  size={{ xs: 6 }}
                   justifyContent="flex-end"
                 >
                   <Grid2 container>
