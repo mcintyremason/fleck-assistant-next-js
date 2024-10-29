@@ -4,12 +4,16 @@
   "theme_color": "#e43d30",
   "background_color": "#e43d30",
   "display": "browser",
-  "scope": "/",
   "start_url": "/",
   "icons": [
     {
       "src": "/rwf.png",
-      "sizes": "36x36",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/rwf-180x180.png",
+      "sizes": "180x180",
       "type": "image/png"
     }
   ]
