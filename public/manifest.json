@@ -1,0 +1,16 @@
+{
+  "name": "Fleck Assistant",
+  "short_name": "Fleck Assistant",
+  "theme_color": "#e43d30",
+  "background_color": "#e43d30",
+  "display": "browser",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "/img/icons/favicon-1/rwf.png",
+      "sizes": "36x36",
+      "type": "image/png"
+    }
+  ]
+}
