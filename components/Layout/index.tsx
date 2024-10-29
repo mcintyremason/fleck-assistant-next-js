@@ -19,12 +19,9 @@ const Layout = ({
       <title>{title}</title>
       <meta charSet="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="apple-touch-icon" href="/img/icons/favicon-1/rwf.png" />
+      <link rel="manifest" href="/manifest.json" />
       <link rel="apple-touch-icon" href="/rwf.png" />
-      <link
-        rel="apple-touch-startup-image"
-        href="/img/icons/favicon-1/rwf.png"
-      />
+      <link rel="apple-touch-startup-image" href="/rwf.png" />
       <link rel="icon" type="image/png" href="/img/icons/favicon-1/rwf.png" />
       <meta name="apple-mobile-web-app-title" content="Fleck Assistant" />
       <meta name="description" content="More than only a website..." />
