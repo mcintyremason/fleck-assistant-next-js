@@ -25,6 +25,11 @@ const Layout = ({
         type="image/png"
       />
       <link
+        rel="apple-touch-icon"
+        sizes="32x32"
+        href="/img/icons/favicon-1/rwf.png"
+      ></link>
+      <link
         rel="apple-touch-startup-image"
         href="/img/icons/favicon-1/rwf.png"
       />
