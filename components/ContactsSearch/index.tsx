@@ -159,7 +159,6 @@ const ContactsSearch: React.FC<ContactsSearchProps> = (_) => {
         </Paper>
       </Grid2>
 
-      {/* <ContactsTable contacts={contacts} /> */}
       <Grid2 container size={{ xs: 12 }} padding="10px">
         {isLoading ? (
           <Grid2 container justifyContent="center" width="100%">
