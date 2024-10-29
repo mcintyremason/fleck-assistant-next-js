@@ -23,6 +23,7 @@ const Layout = ({
       <link rel="icon" href="/rwf.png" type="image/png" />
       <link rel="shortcut icon" href="/rwf.png" type="image/png" />
       <link rel="apple-touch-icon" href="/rwf180.png" type="image/png" />
+      <link rel="mask-icon" href="/rwf180.png" />
       <meta name="apple-mobile-web-app-title" content="Fleck Assistant" />
       <meta name="description" content="More than only a website..." />
       <link type="text/css" rel="preload" as="style" href="/css/app.css" />
