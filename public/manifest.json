@@ -7,12 +7,12 @@
   "start_url": "/",
   "icons": [
     {
-      "src": "/rwf.png",
+      "src": "/frc32.png",
       "sizes": "32x32",
       "type": "image/png"
     },
     {
-      "src": "/rwf-180x180.png",
+      "src": "/frc180.png",
       "sizes": "180x180",
       "type": "image/png"
     }
