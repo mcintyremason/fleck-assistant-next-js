@@ -1,7 +1,7 @@
-import axios from "axios";
+import axios, { AxiosInstance } from "axios";
 
 export default class JobNimbusApi {
-  private jobnimbusAxiosInstance;
+  private jobnimbusAxiosInstance: AxiosInstance;
 
   constructor() {
     if (!this.jobnimbusAxiosInstance) {
@@ -47,6 +47,34 @@ export default class JobNimbusApi {
       if (id) {
         response = await this.jobnimbusAxiosInstance.get(
           `/api1/contacts/${id}`,
+        );
+      } else {
+        throw Error("Error: ID Required");
+      }
+
+      if (response) {
+        return response;
+      } else {
+        throw Error("Error: Response not valid");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async updateContact(id: string, updatedFields: any) {
+    try {
+      let response = undefined;
+
+      if (id) {
+        response = await this.jobnimbusAxiosInstance.put(
+          `/api1/contacts/${id}`,
+          updatedFields,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          },
         );
       } else {
         throw Error("Error: ID Required");

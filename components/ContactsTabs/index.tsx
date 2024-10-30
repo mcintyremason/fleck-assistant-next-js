@@ -1,7 +1,7 @@
 import { TabContext, TabList } from "@mui/lab";
 import { Box, Tab } from "@mui/material";
 import React from "react";
-import { StatusNames } from "../../types/contacts";
+import { AllStatusNames } from "../../types/contacts";
 import { ContactsTabPanel } from "./ContactsTabPanel";
 
 type ContactsTabsProps = {};
@@ -30,7 +30,7 @@ const ContactsTabs: React.FC<ContactsTabsProps> = (_) => {
           scrollButtons="auto"
           aria-label="scrollable auto tabs example"
         >
-          {Object.values(StatusNames).map((status, index) => (
+          {Object.values(AllStatusNames).map((status, index) => (
             <Tab
               label={status}
               id={status}
@@ -39,7 +39,7 @@ const ContactsTabs: React.FC<ContactsTabsProps> = (_) => {
             />
           ))}
         </TabList>
-        {Object.values(StatusNames).map((status, index) => {
+        {Object.values(AllStatusNames).map((status, index) => {
           return (
             <ContactsTabPanel
               key={`contacts-tab-panel-${status}`}
