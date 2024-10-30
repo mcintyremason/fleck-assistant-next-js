@@ -99,7 +99,7 @@ export const useFleckAssistantApi = () => {
   const updateContactApi = async (
     id: string,
     updatedFields: any,
-  ): Promise<any> => {
+  ): Promise<ContactType> => {
     const baseUrl = getFleckAssistantEndpoint();
 
     const response = await makeApiCall<ContactType>({
