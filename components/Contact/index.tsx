@@ -50,10 +50,6 @@ const Contact: React.FC<ContactProps> = (props: ContactProps) => {
     }
   }, [getContactByIdApi]);
 
-  React.useEffect(() => {
-    fetchContact();
-  }, [id]);
-
   const updateContact = React.useCallback(
     async (_contactType: string, _statusType: string) => {
       if (id) {
@@ -62,15 +58,33 @@ const Contact: React.FC<ContactProps> = (props: ContactProps) => {
           status_name: _statusType,
         };
 
-        await updateContactApi(id, updatedFields);
-        fetchContact();
+        const updatedContact = await updateContactApi(id, updatedFields);
+        setContact(updatedContact);
       }
     },
     [getContactByIdApi],
   );
 
   React.useEffect(() => {
-    if (contactType) {
+    fetchContact();
+  }, [id]);
+
+  React.useEffect(() => {
+    switch (contactType) {
+      case ContactTypeNames.REPEAT_CUSTOMER:
+        setStatusTypes(Object.values(RepeatCustomerStatusNames));
+        break;
+      case ContactTypeNames.ISSUE:
+        setStatusTypes(Object.values(IssueStatusNames));
+        break;
+      default:
+        setStatusTypes(Object.values(OtherStatusNames));
+        break;
+    }
+  }, [contact]);
+
+  React.useEffect(() => {
+    if (contactType && contactType != contact.record_type_name) {
       let newStatusType = statusType;
       switch (contactType) {
         case ContactTypeNames.REPEAT_CUSTOMER:
