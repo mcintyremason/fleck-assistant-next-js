@@ -111,7 +111,6 @@ export enum AllStatusNames {
   CUSTOMER_CONTACTED = "Customer Contacted",
   ESTIMATE_SCHEDULED = "Estimate Scheduled",
   ESTIMATE_SENT = "Estimate Sent",
-  LOST_RESIDENTIAL_RETAIL = "Lost Residential Retail",
   SOLD = "Sold",
   PROJECT_PLANNING = "Project Planning",
   PRODUCTION_SCHEDULED = "Production Scheduled",
@@ -126,6 +125,7 @@ export enum AllStatusNames {
   ISSUE_RESOLVED = "Issue Resolved",
   PROJECT_LIMBO = "Project Limbo",
   DID_NOT_PAY = "Did Not Pay",
+  LOST_RESIDENTIAL_RETAIL = "Lost Residential Retail",
 }
 
 export enum RepeatCustomerStatusNames {
