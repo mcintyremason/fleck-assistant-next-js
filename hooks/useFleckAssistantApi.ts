@@ -5,7 +5,7 @@ import {
   SetErrorMessageContext,
 } from "../contexts/ErrorContext";
 import { LoadingContext, SetLoadingContext } from "../contexts/LoadingContext";
-import { ContactsResponse } from "../types/contacts";
+import { ContactsResponse, ContactType } from "../types/contacts";
 import { getFleckAssistantEndpoint } from "../utils/env";
 
 export interface ResponseStructure<Type> {
@@ -71,7 +71,9 @@ export const useFleckAssistantApi = () => {
     }
   };
 
-  const getContactsApi = async (filter: any | undefined = undefined) => {
+  const getContactsApi = async (
+    filter: any | undefined = undefined,
+  ): Promise<Array<ContactType>> => {
     const baseUrl = getFleckAssistantEndpoint();
     const encodedJsonFilter = encodeURIComponent(JSON.stringify(filter));
 
@@ -83,16 +85,37 @@ export const useFleckAssistantApi = () => {
     return response.data?.results ?? [];
   };
 
-  const getContactByIdApi = async (id: string) => {
+  const getContactByIdApi = async (id: string): Promise<ContactType> => {
     const baseUrl = getFleckAssistantEndpoint();
 
-    const response = await makeApiCall<ContactsResponse>({
+    const response = await makeApiCall<ContactType>({
       url: `${baseUrl}/get-contacts/${id}`,
       method: "get",
     });
 
-    return response.data ?? {};
+    return response.data ?? ({} as ContactType);
   };
 
-  return { getContactsApi, getContactByIdApi, isLoading, errorMessage };
+  const updateContactApi = async (
+    id: string,
+    updatedFields: any,
+  ): Promise<any> => {
+    const baseUrl = getFleckAssistantEndpoint();
+
+    const response = await makeApiCall<ContactType>({
+      url: `${baseUrl}/update-contact/${id}`,
+      method: "post",
+      data: updatedFields,
+    });
+
+    return response.data ?? ({} as ContactType);
+  };
+
+  return {
+    getContactsApi,
+    getContactByIdApi,
+    updateContactApi,
+    isLoading,
+    errorMessage,
+  };
 };

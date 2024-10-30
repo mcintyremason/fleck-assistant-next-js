@@ -3,9 +3,9 @@ import JobNimbusApi from "../../../../services/jobnimbus";
 
 // example nextjs api call handler
 // not being used
-const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const jobNimbusApi = new JobNimbusApi();
-  const id = _req.query?.id as string;
+  const id = req.query?.id as string;
 
   try {
     const response = await jobNimbusApi.getContactById(id);

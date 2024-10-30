@@ -18,3 +18,7 @@
 .contact-container .contact-details-jn-link {
   border: none;
 }
+
+.contact-container .contact-type-select div {
+  padding: 5px;
+}

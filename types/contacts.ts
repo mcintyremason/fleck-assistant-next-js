@@ -105,12 +105,13 @@ export type ContactType = {
   "Deposit Collected"?: boolean;
 };
 
-export enum StatusNames {
+export enum AllStatusNames {
   INCOMING_ISSUE = "Incoming Issue",
   INCOMING_RESIDENTIAL_RETAIL = "Incoming Residential Retail",
   CUSTOMER_CONTACTED = "Customer Contacted",
   ESTIMATE_SCHEDULED = "Estimate Scheduled",
   ESTIMATE_SENT = "Estimate Sent",
+  LOST_RESIDENTIAL_RETAIL = "Lost Residential Retail",
   SOLD = "Sold",
   PROJECT_PLANNING = "Project Planning",
   PRODUCTION_SCHEDULED = "Production Scheduled",
@@ -125,4 +126,69 @@ export enum StatusNames {
   ISSUE_RESOLVED = "Issue Resolved",
   PROJECT_LIMBO = "Project Limbo",
   DID_NOT_PAY = "Did Not Pay",
+}
+
+export enum RepeatCustomerStatusNames {
+  ACTIVE = "Active",
+  CUSTOMER_CONTACTED = "Customer Contacted",
+  ESTIMATE_SCHEDULED = "Estimate Scheduled",
+  ESTIMATE_SENT = "Estimate Sent",
+  PROJECT_LIMBO = "Project Limbo",
+  SOLD = "Sold",
+  PROJECT_PLANNING = "Project Planning",
+  PRODUCTION_SCHEDULED = "Production Scheduled",
+  PRODUCTION_IN_PROCESS = "Production In Process",
+  PROJECT_COMPLETED = "Project Completed",
+  PRODUCTION_LIMBO = "Production Limbo",
+  PENDING_PAYMENTS = "Pending Payments",
+  DID_NOT_PAY = "Did Not Pay",
+  THANK_YOU_EMAIL_REVIEW = "Thank You Email/Review",
+  WARRANTY_SUBMITTAL = "Warranty Submittal",
+  PAID_AND_CLOSED = "Paid & Closed",
+}
+
+export enum IssueStatusNames {
+  INCOMING_ISSUE = "Incoming Issue",
+  PROJECT_PLANNING = "Project Planning",
+  PRODUCTION_SCHEDULED = "Production Scheduled",
+  PRODUCTION_IN_PROCESS = "Production In Process",
+  ISSUE_RESOLVED = "Issue Resolved",
+}
+
+export enum OtherStatusNames {
+  INCOMING_RESIDENTIAL_RETAIL = "Incoming Residential Retail",
+  CUSTOMER_CONTACTED = "Customer Contacted",
+  ESTIMATE_SCHEDULED = "Estimate Scheduled",
+  ESTIMATE_SENT = "Estimate Sent",
+  PRODUCTION_LIMBO = "Production Limbo",
+  LOST_RESIDENTIAL_RETAIL = "Lost Residential Retail",
+  SOLD = "Sold",
+  PROJECT_PLANNING = "Project Planning",
+  PRODUCTION_SCHEDULED = "Production Scheduled",
+  PRODUCTION_IN_PROCESS = "Production In Process",
+  PROJECT_COMPLETED = "Project Completed",
+  PROJECT_LIMBO = "Project Limbo",
+  PENDING_PAYMENTS = "Pending Payments",
+  DID_NOT_PAY = "Did Not Pay",
+  THANK_YOU_EMAIL_REVIEW = "Thank You Email/Review",
+  WARRANTY_SUBMITTAL = "Warranty Submittal",
+  PAID_AND_CLOSED = "Paid & Closed",
+}
+
+export enum ContactTypeNames {
+  REPEAT_CUSTOMER = "Repeat Customer",
+  ISSUE = "Issue",
+  SHINGLE_ROOF = "Shingle Roof",
+  SMALL_ROOF = "Small Roof",
+  SERVICE_AND_REPAIR = "Service & Repair",
+  SHINGLE_ROOF_AND_GUTTER = "Shingle Roof & Gutter",
+  SHINGLE_ROOF_AND_FLAT_ROOF = "Shingle Roof & Flat Roof",
+  FLAT_ROOF = "Flat Roof",
+  GUTTER = "Gutter",
+  METAL_ROOF = "Metal Roof",
+  SIDING_GUTTER_SOFFIT_AND_FASCIA = "Siding, Gutter, Soffit, & Fascia",
+  GUTTER_SOFFIT_AND_FASCIA = "Gutter, Soffit, & Fascia",
+  SOFFIT_AND_FASCIA = "Soffit, & Fascia",
+  SIDING = "Siding",
+  SHINGLE_ROOF_GUTTER_SOFFIT_AND_FASCIA = "Shingle Roof, Siding, Gutter, Soffit, & Fascia",
 }

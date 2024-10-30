@@ -3,9 +3,13 @@ import styles from "./index.module.css";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import {
   Box,
+  FormControl,
   Grid2,
   LinearProgress,
+  MenuItem,
   Paper,
+  Select,
+  SelectChangeEvent,
   Skeleton,
   Typography,
 } from "@mui/material";
@@ -14,7 +18,13 @@ import classNames from "classnames";
 import Link from "next/link";
 import React from "react";
 import { useFleckAssistantApi } from "../../hooks/useFleckAssistantApi";
-import { ContactType } from "../../types/contacts";
+import {
+  ContactType,
+  ContactTypeNames,
+  IssueStatusNames,
+  OtherStatusNames,
+  RepeatCustomerStatusNames,
+} from "../../types/contacts";
 import { dateDiffFromToday, formatAddress } from "../../utils/common";
 
 type ContactProps = {
@@ -23,14 +33,20 @@ type ContactProps = {
 
 const Contact: React.FC<ContactProps> = (props: ContactProps) => {
   const { id } = props;
-  const { getContactByIdApi, isLoading, errorMessage } = useFleckAssistantApi();
+  const { getContactByIdApi, updateContactApi, isLoading, errorMessage } =
+    useFleckAssistantApi();
 
   const [contact, setContact] = React.useState<ContactType>(null);
+  const [contactType, setContactType] = React.useState<string>(null);
+  const [statusTypes, setStatusTypes] = React.useState<Array<string>>([]);
+  const [statusType, setStatusType] = React.useState<string>(null);
 
   const fetchContact = React.useCallback(async () => {
     if (id) {
       const contactResponse = await getContactByIdApi(id);
       setContact(contactResponse);
+      setContactType(contactResponse.record_type_name);
+      setStatusType(contactResponse.status_name);
     }
   }, [getContactByIdApi]);
 
@@ -38,7 +54,63 @@ const Contact: React.FC<ContactProps> = (props: ContactProps) => {
     fetchContact();
   }, [id]);
 
-  console.log(errorMessage);
+  const updateContact = React.useCallback(
+    async (_contactType: string, _statusType: string) => {
+      if (id) {
+        const updatedFields = {
+          record_type_name: _contactType,
+          status_name: _statusType,
+        };
+
+        await updateContactApi(id, updatedFields);
+      }
+    },
+    [getContactByIdApi],
+  );
+
+  React.useEffect(() => {
+    if (contactType) {
+      let newStatusType = statusType;
+      switch (contactType) {
+        case ContactTypeNames.REPEAT_CUSTOMER:
+          setStatusTypes(Object.values(RepeatCustomerStatusNames));
+          newStatusType = Object.values(RepeatCustomerStatusNames)[0];
+          setStatusType(newStatusType);
+
+          break;
+        case ContactTypeNames.ISSUE:
+          setStatusTypes(Object.values(IssueStatusNames));
+          newStatusType = Object.values(IssueStatusNames)[0];
+          setStatusType(newStatusType);
+
+          break;
+        default:
+          setStatusTypes(Object.values(OtherStatusNames));
+          newStatusType = Object.values(OtherStatusNames)[0];
+
+          setStatusType(newStatusType);
+
+          break;
+      }
+      if (contactType && contactType != contact.record_type_name) {
+        updateContact(contactType, newStatusType);
+      }
+    }
+  }, [contactType]);
+
+  React.useEffect(() => {
+    if (statusType && statusType != contact.status_name) {
+      updateContact(contactType, statusType);
+    }
+  }, [statusType]);
+
+  const handleContactTypeChange = (event: SelectChangeEvent<string>) => {
+    setContactType(event.target.value as string);
+  };
+
+  const handleStatusChange = (event: SelectChangeEvent<string>) => {
+    setStatusType(event.target.value as string);
+  };
 
   return errorMessage ? (
     <Grid2 container justifyContent="center">
@@ -70,45 +142,6 @@ const Contact: React.FC<ContactProps> = (props: ContactProps) => {
             variant="outlined"
             className={classNames(styles["contact-details-container"])}
           >
-            <Grid2
-              container
-              columns={{ xs: 12 }}
-              flexGrow={1}
-              spacing={1}
-              className={classNames(styles["contact-details-row"])}
-            >
-              <Grid2 flexDirection="column" size={{ xs: 4, md: 5 }}>
-                <Typography
-                  variant="h5"
-                  className={classNames(styles["contact-details-title"])}
-                >
-                  Contact Type
-                </Typography>
-                <Typography>{contact.record_type_name}</Typography>
-              </Grid2>
-
-              <Grid2 flexDirection="column" size={{ xs: 4, md: 3 }}>
-                <Typography
-                  variant="h5"
-                  className={classNames(styles["contact-details-title"])}
-                >
-                  Status
-                </Typography>
-                <Typography>{contact.status_name}</Typography>
-              </Grid2>
-
-              <Grid2 flexDirection="column" size={{ xs: 4 }}>
-                <Typography
-                  variant="h5"
-                  className={classNames(styles["contact-details-title"])}
-                >
-                  Last Status Change
-                </Typography>
-                <Typography>
-                  {dateDiffFromToday(contact.date_status_change)} Days
-                </Typography>
-              </Grid2>
-            </Grid2>
             <Grid2
               container
               columns={{ xs: 12 }}
@@ -168,6 +201,69 @@ const Contact: React.FC<ContactProps> = (props: ContactProps) => {
               spacing={1}
               className={classNames(styles["contact-details-row"])}
             >
+              <Grid2 flexDirection="column" size={{ xs: 6 }}>
+                <Typography
+                  variant="h5"
+                  className={classNames(styles["contact-details-title"])}
+                >
+                  Contact Type
+                </Typography>
+                <Grid2 size={{ xs: 12, md: 10, lg: 6 }}>
+                  <FormControl fullWidth>
+                    <Select
+                      id="contact-type-select"
+                      className={classNames(styles["contact-type-select"])}
+                      value={contactType}
+                      onChange={handleContactTypeChange}
+                      tabIndex={0}
+                      MenuProps={{ disablePortal: true }}
+                      inputProps={{ style: { padding: "5px" } }}
+                    >
+                      {Object.values(ContactTypeNames).map((contactType) => {
+                        return (
+                          <MenuItem value={contactType}>{contactType}</MenuItem>
+                        );
+                      })}
+                    </Select>
+                  </FormControl>
+                </Grid2>
+              </Grid2>
+
+              <Grid2 flexDirection="column" size={{ xs: 6 }}>
+                <Typography
+                  variant="h5"
+                  className={classNames(styles["contact-details-title"])}
+                >
+                  Status
+                </Typography>
+                <Grid2 size={{ xs: 12, md: 10, lg: 6 }}>
+                  <FormControl fullWidth>
+                    <Select
+                      id="contact-type-select"
+                      className={classNames(styles["contact-type-select"])}
+                      value={statusType}
+                      onChange={handleStatusChange}
+                      tabIndex={0}
+                      MenuProps={{ disablePortal: true }}
+                      inputProps={{ style: { padding: "5px" } }}
+                    >
+                      {statusTypes.map((statusType) => {
+                        return (
+                          <MenuItem value={statusType}>{statusType}</MenuItem>
+                        );
+                      })}
+                    </Select>
+                  </FormControl>
+                </Grid2>
+              </Grid2>
+            </Grid2>
+            <Grid2
+              container
+              columns={{ xs: 12 }}
+              flexGrow={1}
+              spacing={1}
+              className={classNames(styles["contact-details-row"])}
+            >
               <Grid2 container wrap="wrap" size={{ xs: 12 }}>
                 <Grid2 flexDirection="column" size={{ xs: 6 }}>
                   <Typography
@@ -178,10 +274,21 @@ const Contact: React.FC<ContactProps> = (props: ContactProps) => {
                   </Typography>
                   <Typography>{contact.sales_rep_name}</Typography>
                 </Grid2>
+                <Grid2 flexDirection="column" size={{ xs: 4 }}>
+                  <Typography
+                    variant="h5"
+                    className={classNames(styles["contact-details-title"])}
+                  >
+                    Last Status Change
+                  </Typography>
+                  <Typography>
+                    {dateDiffFromToday(contact.date_status_change)} Days
+                  </Typography>
+                </Grid2>
                 <Grid2
                   container
                   wrap="wrap"
-                  size={{ xs: 6 }}
+                  size={{ xs: 12 }}
                   justifyContent="flex-end"
                 >
                   <Grid2 container>
