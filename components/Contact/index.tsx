@@ -63,6 +63,7 @@ const Contact: React.FC<ContactProps> = (props: ContactProps) => {
         };
 
         await updateContactApi(id, updatedFields);
+        fetchContact();
       }
     },
     [getContactByIdApi],
