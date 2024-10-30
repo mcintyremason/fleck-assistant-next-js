@@ -221,7 +221,9 @@ const Contact: React.FC<ContactProps> = (props: ContactProps) => {
                     >
                       {Object.values(ContactTypeNames).map((contactType) => {
                         return (
-                          <MenuItem value={contactType}>{contactType}</MenuItem>
+                          <MenuItem key={contactType} value={contactType}>
+                            {contactType}
+                          </MenuItem>
                         );
                       })}
                     </Select>
@@ -249,7 +251,9 @@ const Contact: React.FC<ContactProps> = (props: ContactProps) => {
                     >
                       {statusTypes.map((statusType) => {
                         return (
-                          <MenuItem value={statusType}>{statusType}</MenuItem>
+                          <MenuItem key={statusType} value={statusType}>
+                            {statusType}
+                          </MenuItem>
                         );
                       })}
                     </Select>
