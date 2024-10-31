@@ -165,7 +165,7 @@ const Contact: React.FC<ContactProps> = (props: ContactProps) => {
               className={classNames(styles["contact-details-row"])}
             >
               <Grid2 container columns={{ xs: 12 }} flexGrow={1} spacing={1}>
-                <Grid2 flexDirection="column" size={{ xs: 4, md: 5 }}>
+                <Grid2 flexDirection="column" size={{ xs: 4, sm: 5 }}>
                   <Typography
                     variant="h5"
                     className={classNames(styles["contact-details-title"])}
@@ -182,7 +182,7 @@ const Contact: React.FC<ContactProps> = (props: ContactProps) => {
                   </Link>
                 </Grid2>
 
-                <Grid2 flexDirection="column" size={{ xs: 4, md: 3 }}>
+                <Grid2 flexDirection="column" size={{ xs: 4, sm: 3 }}>
                   <Typography
                     variant="h5"
                     className={classNames(styles["contact-details-title"])}
@@ -216,7 +216,7 @@ const Contact: React.FC<ContactProps> = (props: ContactProps) => {
               spacing={1}
               className={classNames(styles["contact-details-row"])}
             >
-              <Grid2 flexDirection="column" size={{ xs: 6 }}>
+              <Grid2 flexDirection="column" size={{ xs: 6, md: 5 }}>
                 <Typography
                   variant="h5"
                   className={classNames(styles["contact-details-title"])}
@@ -246,7 +246,7 @@ const Contact: React.FC<ContactProps> = (props: ContactProps) => {
                 </Grid2>
               </Grid2>
 
-              <Grid2 flexDirection="column" size={{ xs: 6 }}>
+              <Grid2 flexDirection="column" size={{ xs: 6, md: 4 }}>
                 <Typography
                   variant="h5"
                   className={classNames(styles["contact-details-title"])}
@@ -284,7 +284,7 @@ const Contact: React.FC<ContactProps> = (props: ContactProps) => {
               className={classNames(styles["contact-details-row"])}
             >
               <Grid2 container wrap="wrap" size={{ xs: 12 }}>
-                <Grid2 flexDirection="column" size={{ xs: 6 }}>
+                <Grid2 flexDirection="column" size={{ xs: 6, md: 5 }}>
                   <Typography
                     variant="h5"
                     className={classNames(styles["contact-details-title"])}
