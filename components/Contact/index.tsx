@@ -246,7 +246,7 @@ const Contact: React.FC<ContactProps> = (props: ContactProps) => {
                 </Grid2>
               </Grid2>
 
-              <Grid2 flexDirection="column" size={{ xs: 6, md: 4 }}>
+              <Grid2 flexDirection="column" size={{ xs: 6, md: 5 }}>
                 <Typography
                   variant="h5"
                   className={classNames(styles["contact-details-title"])}
