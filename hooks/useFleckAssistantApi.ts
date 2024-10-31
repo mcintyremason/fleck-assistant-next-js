@@ -104,7 +104,7 @@ export const useFleckAssistantApi = () => {
 
     const response = await makeApiCall<ContactType>({
       url: `${baseUrl}/update-contact/${id}`,
-      method: "post",
+      method: "put",
       data: updatedFields,
     });
 

@@ -1,5 +1,6 @@
 import { Grid2, ThemeProvider } from "@mui/material";
 
+import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import React from "react";
 import ContactsSearch from "../../components/ContactsSearch";
 import Footer from "../../components/Footer";
@@ -7,7 +8,7 @@ import Header from "../../components/Header";
 import Layout from "../../components/Layout";
 import originalTheme from "../../themes/original-theme";
 
-const IndexPage: React.FC = () => {
+const ContactsPage: React.FC = () => {
   return (
     <ThemeProvider theme={originalTheme}>
       <Layout title="FRC Assistant">
@@ -25,4 +26,5 @@ const IndexPage: React.FC = () => {
   );
 };
 
-export default IndexPage;
+export default ContactsPage;
+export const getServerSideProps = withPageAuthRequired();

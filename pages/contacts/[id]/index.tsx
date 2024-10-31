@@ -1,5 +1,6 @@
 import { Grid2, ThemeProvider } from "@mui/material";
 
+import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { useRouter } from "next/router";
 import React from "react";
 import Contact from "../../../components/Contact";
@@ -8,7 +9,7 @@ import Header from "../../../components/Header";
 import Layout from "../../../components/Layout";
 import originalTheme from "../../../themes/original-theme";
 
-const IndexPage: React.FC = () => {
+const ContactPage: React.FC = () => {
   const router = useRouter();
   const contactId = router.query.id as string;
   return (
@@ -28,4 +29,5 @@ const IndexPage: React.FC = () => {
   );
 };
 
-export default IndexPage;
+export default ContactPage;
+export const getServerSideProps = withPageAuthRequired();

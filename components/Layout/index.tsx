@@ -1,3 +1,4 @@
+import { UserProvider } from "@auth0/nextjs-auth0/client";
 import Head from "next/head";
 import { ReactNode } from "react";
 import { ErrorContextProvider } from "../../contexts/ErrorContext";
@@ -40,9 +41,11 @@ const Layout = ({ children, title = "FRC Assistant", styles = "" }: Props) => (
       />
       {styles}
     </Head>
-    <LoadingContextProvider>
-      <ErrorContextProvider>{children}</ErrorContextProvider>
-    </LoadingContextProvider>
+    <UserProvider>
+      <LoadingContextProvider>
+        <ErrorContextProvider>{children}</ErrorContextProvider>
+      </LoadingContextProvider>
+    </UserProvider>
   </div>
 );
 
