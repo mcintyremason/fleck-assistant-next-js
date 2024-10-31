@@ -38,7 +38,10 @@ export function ContactsTabPanel(props: TabPanelProps) {
   }, [getContactsApi]);
 
   React.useEffect(() => {
-    if (isActive) {
+    const contactsTab = sessionStorage.getItem("contacts-tab");
+    if (contactsTab && value === contactsTab && isActive) {
+      fetchContacts();
+    } else if (isActive && !contactsTab) {
       fetchContacts();
     }
   }, [isActive]);
