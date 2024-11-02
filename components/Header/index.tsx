@@ -61,6 +61,12 @@ const Header: React.FC<HeaderProps> = (_: HeaderProps) => {
                   Contacts
                 </Link>
               </Grid2>
+              <Grid2 className={styles["menu-link-divider"]}>|</Grid2>
+              <Grid2 className={styles["menu-link-container"]}>
+                <Link className={styles["menu-link"]} href="/api/auth/logout">
+                  Logout
+                </Link>
+              </Grid2>
             </Grid2>
           </Grid>
         </Grid>

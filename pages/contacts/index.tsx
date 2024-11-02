@@ -1,6 +1,5 @@
 import { Grid2, ThemeProvider } from "@mui/material";
 
-import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import React from "react";
 import ContactsSearch from "../../components/ContactsSearch";
 import Header from "../../components/Header";
@@ -25,6 +24,3 @@ const ContactsPage: React.FC = () => {
 };
 
 export default ContactsPage;
-export const getServerSideProps = withPageAuthRequired({
-  returnTo: "/login",
-});

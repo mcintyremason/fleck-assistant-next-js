@@ -1,6 +1,5 @@
 import { Grid2, ThemeProvider } from "@mui/material";
 
-import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import React from "react";
 import ContactsTabs from "../components/ContactsTabs";
 import Header from "../components/Header";
@@ -25,6 +24,3 @@ const IndexPage: React.FC = () => {
 };
 
 export default IndexPage;
-export const getServerSideProps = withPageAuthRequired({
-  returnTo: "/login",
-});
