@@ -128,6 +128,10 @@ li {
   height: inherit;
 }
 
+#__next {
+  height: inherit;
+}
+
 .app {
   height: inherit;
   font-family: "San Frediano", "BloggerSans", "Helvetica Neue", Helvetica, Arial,

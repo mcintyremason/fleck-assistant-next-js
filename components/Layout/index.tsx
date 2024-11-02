@@ -11,7 +11,7 @@ type Props = {
 };
 
 const Layout = ({ children, title = "FRC Assistant", styles = "" }: Props) => (
-  <div>
+  <div className="height-full">
     <Head>
       <title>{title}</title>
       <meta charSet="utf-8" />

@@ -1,0 +1,26 @@
+.login-card-container .login-card {
+  min-width: 240px;
+  width: fit-content;
+  padding: 20px;
+}
+
+.login-card-container .login-card .login-card-text {
+  color: var(--background-secondary);
+  font-weight: 1000;
+  padding-top: 24px;
+  font-size: 1.5em;
+}
+
+.login-card-container .login-card-actions {
+  padding: 0 0 10px;
+}
+
+.login-card-container .login-card-actions .login-card-link {
+  width: 100%;
+  color: var(--background-primary);
+  border: none;
+}
+
+.login-card-container .login-card-actions .login-card-button {
+  width: 100%;
+}

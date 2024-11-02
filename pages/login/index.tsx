@@ -1,10 +1,11 @@
+import styles from "./index.module.css";
+
 import { Grid2, ThemeProvider } from "@mui/material";
 
-import { withPageAuthRequired } from "@auth0/nextjs-auth0";
+import classNames from "classnames";
 import React from "react";
-import ContactsSearch from "../../components/ContactsSearch";
-import Header from "../../components/Header";
 import Layout from "../../components/Layout";
+import LoginCard from "../../components/LoginCard";
 import originalTheme from "../../themes/original-theme";
 
 const ContactsPage: React.FC = () => {
@@ -16,8 +17,17 @@ const ContactsPage: React.FC = () => {
           itemScope
           itemType="http://schema.org/LocalBusiness"
         >
-          <Header />
-          <ContactsSearch />
+          <Grid2
+            container
+            justifyContent="center"
+            className={classNames(styles["height-full"], styles["login-page"])}
+          >
+            <Grid2 container flexDirection="column" justifyContent="center">
+              <Grid2 container>
+                <LoginCard />
+              </Grid2>
+            </Grid2>
+          </Grid2>
         </Grid2>
       </Layout>
     </ThemeProvider>
@@ -25,6 +35,3 @@ const ContactsPage: React.FC = () => {
 };
 
 export default ContactsPage;
-export const getServerSideProps = withPageAuthRequired({
-  returnTo: "/login",
-});
