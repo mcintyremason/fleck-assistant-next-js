@@ -8,7 +8,7 @@ import Header from "../../../components/Header";
 import Layout from "../../../components/Layout";
 import originalTheme from "../../../themes/original-theme";
 
-const IndexPage: React.FC = () => {
+const ContactPage: React.FC = () => {
   const router = useRouter();
   const contactId = router.query.id as string;
   return (
@@ -28,4 +28,4 @@ const IndexPage: React.FC = () => {
   );
 };
 
-export default IndexPage;
+export default ContactPage;

@@ -7,7 +7,7 @@ import Header from "../../components/Header";
 import Layout from "../../components/Layout";
 import originalTheme from "../../themes/original-theme";
 
-const IndexPage: React.FC = () => {
+const ContactsPage: React.FC = () => {
   return (
     <ThemeProvider theme={originalTheme}>
       <Layout title="FRC Assistant">
@@ -25,4 +25,4 @@ const IndexPage: React.FC = () => {
   );
 };
 
-export default IndexPage;
+export default ContactsPage;

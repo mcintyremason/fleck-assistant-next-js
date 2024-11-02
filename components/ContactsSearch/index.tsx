@@ -152,7 +152,8 @@ const ContactsSearch: React.FC<ContactsSearchProps> = (_) => {
             onBlur={() => fetchContacts(searchValue)}
             onKeyUp={(event) => {
               if (event.key == "Enter") {
-                fetchContacts(searchValue);
+                event.preventDefault();
+                event.currentTarget.blur();
               }
             }}
           />
