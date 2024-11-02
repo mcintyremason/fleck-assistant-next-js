@@ -4,7 +4,7 @@
   "theme_color": "#e43d30",
   "background_color": "#e43d30",
   "display": "browser",
-  "start_url": "/",
+  "start_url": "/login",
   "icons": [
     {
       "src": "/frc32.png",

@@ -1,3 +1,4 @@
+import { UserProvider } from "@auth0/nextjs-auth0/client";
 import Head from "next/head";
 import { ReactNode } from "react";
 import { ErrorContextProvider } from "../../contexts/ErrorContext";
@@ -10,7 +11,7 @@ type Props = {
 };
 
 const Layout = ({ children, title = "FRC Assistant", styles = "" }: Props) => (
-  <div>
+  <div className="height-full">
     <Head>
       <title>{title}</title>
       <meta charSet="utf-8" />
@@ -40,9 +41,11 @@ const Layout = ({ children, title = "FRC Assistant", styles = "" }: Props) => (
       />
       {styles}
     </Head>
-    <LoadingContextProvider>
-      <ErrorContextProvider>{children}</ErrorContextProvider>
-    </LoadingContextProvider>
+    <UserProvider>
+      <LoadingContextProvider>
+        <ErrorContextProvider>{children}</ErrorContextProvider>
+      </LoadingContextProvider>
+    </UserProvider>
   </div>
 );
 

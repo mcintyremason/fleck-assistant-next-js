@@ -159,7 +159,7 @@ const ContactsSearch: React.FC<ContactsSearchProps> = (_) => {
         </Paper>
       </Grid2>
 
-      <Grid2 container size={{ xs: 12 }} padding="5px 10px">
+      <Grid2 container size={{ xs: 12 }}>
         {isLoading ? (
           <Grid2 container justifyContent="center" width="100%">
             <Box sx={{ width: "100%" }}>
@@ -168,7 +168,13 @@ const ContactsSearch: React.FC<ContactsSearchProps> = (_) => {
             <Skeleton animation="wave" width="95%" height={80} />
           </Grid2>
         ) : (
-          <Grid2 container size={{ xs: 12 }} flexDirection="column" spacing={1}>
+          <Grid2
+            container
+            size={{ xs: 12 }}
+            flexDirection="column"
+            spacing={1}
+            padding="5px 10px"
+          >
             {contacts.map((contact) => {
               return (
                 <Grid2
