@@ -1,3 +1,4 @@
+import { UserProvider } from "@auth0/nextjs-auth0/client";
 import React, { createContext } from "react";
 import { ErrorContextProvider } from "../../contexts/ErrorContext";
 import { LoadingContextProvider } from "../../contexts/LoadingContext";
@@ -15,9 +16,11 @@ const AppContainer: React.FC<AppContainerProps> = (props) => {
 
   return (
     <AppContext.Provider value={appContextValue}>
-      <LoadingContextProvider>
-        <ErrorContextProvider>{props.children}</ErrorContextProvider>
-      </LoadingContextProvider>
+      <UserProvider>
+        <LoadingContextProvider>
+          <ErrorContextProvider>{props.children}</ErrorContextProvider>
+        </LoadingContextProvider>
+      </UserProvider>
     </AppContext.Provider>
   );
 };
