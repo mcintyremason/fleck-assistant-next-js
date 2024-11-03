@@ -19,7 +19,7 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = (
 
   return (
     <SwipeableDrawer
-      anchor="right"
+      anchor="left"
       open={open}
       className={styles["menu-drawer"]}
       onClose={onClose}

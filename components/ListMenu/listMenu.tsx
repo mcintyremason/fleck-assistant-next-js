@@ -1,5 +1,5 @@
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
-import { Collapse, Grid, List, ListItem, ListItemIcon } from "@mui/material";
+import { Collapse, Grid2, List, ListItem, ListItemIcon } from "@mui/material";
 import classNames from "classnames";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -42,14 +42,14 @@ export const ListMenu: React.FC<ListMenuProps> = (props: ListMenuProps) => {
   };
 
   return (
-    <Grid
+    <Grid2
       className={styles["list-menu-container"]}
       container
       direction="column"
       wrap="nowrap"
     >
       {menuLinks.map((link: ListMenuLink) => (
-        <Grid key={`${link.text}-link`} container>
+        <Grid2 key={`${link.text}-link`} container>
           {link?.subLinks?.length ? (
             // if there are sublinks
             <List
@@ -61,7 +61,7 @@ export const ListMenu: React.FC<ListMenuProps> = (props: ListMenuProps) => {
                 onClick={() => expandLinkHandler(link)}
                 className={styles["list-menu-item"]}
               >
-                <Grid
+                <Grid2
                   container
                   justifyContent="space-between"
                   className={classNames(
@@ -73,39 +73,40 @@ export const ListMenu: React.FC<ListMenuProps> = (props: ListMenuProps) => {
                     link.onClick ? link.onClick() : linkClickHandler(e, link);
                   }}
                 >
-                  <Grid
-                    item
-                    xs={2}
+                  <Grid2
                     container
+                    size={{ xs: 3 }}
                     direction="column"
                     justifyContent="center"
                   >
                     {link.icon ? (
                       <ListItemIcon>{link.icon}</ListItemIcon>
                     ) : null}
-                  </Grid>
-                  <Grid item xs={10} container justifyContent={justifyText}>
-                    <Grid
-                      item
-                      xs={10}
+                  </Grid2>
+                  <Grid2
+                    container
+                    size={{ xs: 9 }}
+                    justifyContent={justifyText}
+                  >
+                    <Grid2
                       container
+                      size={{ xs: 10 }}
                       direction="column"
                       justifyContent="center"
                       className={styles["list-menu-link-text"]}
                     >
                       {link.text}
-                    </Grid>
-                    <Grid
-                      item
-                      xs={2}
+                    </Grid2>
+                    <Grid2
                       container
+                      size={{ xs: 2 }}
                       direction="column"
                       justifyContent="center"
                     >
                       {link.isExpanded ? <ExpandLess /> : <ExpandMore />}
-                    </Grid>
-                  </Grid>
-                </Grid>
+                    </Grid2>
+                  </Grid2>
+                </Grid2>
               </ListItem>
               <Collapse in={link.isExpanded} timeout="auto" unmountOnExit>
                 {link?.subLinks.map((subLink) => (
@@ -124,30 +125,28 @@ export const ListMenu: React.FC<ListMenuProps> = (props: ListMenuProps) => {
                         )}
                         href={subLink.href}
                       >
-                        <Grid container justifyContent="space-between">
-                          <Grid
-                            item
-                            xs={2}
+                        <Grid2 container justifyContent="space-between">
+                          <Grid2
                             container
+                            size={{ xs: 3 }}
                             direction="column"
                             justifyContent="center"
                           >
                             {subLink.icon ? (
                               <ListItemIcon>{subLink.icon}</ListItemIcon>
                             ) : null}
-                          </Grid>
-                          <Grid
-                            item
-                            xs={10}
+                          </Grid2>
+                          <Grid2
                             container
+                            size={{ xs: 9 }}
                             direction="column"
                             justifyContent="center"
                           >
-                            <Grid container justifyContent={justifyText}>
+                            <Grid2 container justifyContent={justifyText}>
                               {subLink.text}
-                            </Grid>
-                          </Grid>
-                        </Grid>
+                            </Grid2>
+                          </Grid2>
+                        </Grid2>
                       </Link>
                     </ListItem>
                   </List>
@@ -156,7 +155,7 @@ export const ListMenu: React.FC<ListMenuProps> = (props: ListMenuProps) => {
             </List>
           ) : (
             // if there are no subLinks
-            <Grid
+            <Grid2
               key={`${link.text}-link`}
               container
               className={styles["list-menu-link-container"]}
@@ -182,37 +181,41 @@ export const ListMenu: React.FC<ListMenuProps> = (props: ListMenuProps) => {
                     )}
                     href={link.onClick ? "#" : link.href}
                   >
-                    <Grid container justifyContent="space-between">
-                      <Grid
-                        item
-                        xs={2}
+                    <Grid2 container justifyContent="space-between" spacing={4}>
+                      <Grid2
                         container
+                        size={{ xs: 3 }}
                         direction="column"
                         justifyContent="center"
                       >
                         {link.icon ? (
-                          <ListItemIcon>{link.icon}</ListItemIcon>
+                          <ListItemIcon
+                            className={classNames(
+                              styles["list-menu-item-icon"],
+                            )}
+                          >
+                            {link.icon}
+                          </ListItemIcon>
                         ) : null}
-                      </Grid>
-                      <Grid
-                        item
-                        xs={10}
+                      </Grid2>
+                      <Grid2
                         container
+                        size={{ xs: 9 }}
                         direction="column"
                         justifyContent="center"
                       >
-                        <Grid container justifyContent={justifyText}>
+                        <Grid2 container justifyContent={justifyText}>
                           {link.text}
-                        </Grid>
-                      </Grid>
-                    </Grid>
+                        </Grid2>
+                      </Grid2>
+                    </Grid2>
                   </Link>
                 </ListItem>
               </List>
-            </Grid>
+            </Grid2>
           )}
-        </Grid>
+        </Grid2>
       ))}
-    </Grid>
+    </Grid2>
   );
 };

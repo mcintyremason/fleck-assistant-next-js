@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import MenuDrawer from "../../components/MenuDrawer";
 
-import { AppBar, Grid, Typography } from "@mui/material";
+import ContactPhoneOutlinedIcon from "@mui/icons-material/ContactPhoneOutlined";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
+import { AppBar, Grid2, Typography } from "@mui/material";
 import Link from "next/link";
 import { ListMenuLink } from "../../types/ListMenu";
 import Hamburger from "../Hamburger";
@@ -12,19 +15,19 @@ export const HeaderBar: React.FC = (_) => {
     {
       text: "Home",
       href: "/",
-      // icon: <HomeOutlinedIcon color="primary" />,
+      icon: <HomeOutlinedIcon color="primary" />,
       isExpanded: false,
     },
     {
       text: "Contacts",
       href: "/contacts",
-      // icon: <AccountBalanceWalletOutlinedIcon color="primary" />,
+      icon: <ContactPhoneOutlinedIcon color="primary" />,
       isExpanded: false,
     },
     {
       text: "Logout",
       href: "/api/auth/logout",
-      // icon: <AccountBalanceWalletOutlinedIcon color="primary" />,
+      icon: <LogoutOutlinedIcon color="primary" />,
       isExpanded: false,
     },
   ];
@@ -53,9 +56,12 @@ export const HeaderBar: React.FC = (_) => {
       color="transparent"
       className={styles["header-bar-container"]}
     >
-      <Grid container>
-        <Grid item xs={10} sm={4}>
-          <Grid
+      <Grid2 container>
+        <Grid2 size={{ xs: 1 }} className={styles["hamburger-nav-container"]}>
+          <Hamburger active={hambugerActive} onClick={hamburgerOnClick} />
+        </Grid2>
+        <Grid2 size={{ xs: 11 }}>
+          <Grid2
             container
             direction="column"
             justifyContent="center"
@@ -64,12 +70,10 @@ export const HeaderBar: React.FC = (_) => {
             <Link href="/">
               <Typography variant="h4">FRC Assistant</Typography>
             </Link>
-          </Grid>
-        </Grid>
-        <Grid item xs={2} sm={8} className={styles["hamburger-nav-container"]}>
-          <Hamburger active={hambugerActive} onClick={hamburgerOnClick} />
-        </Grid>
-        <Grid>
+          </Grid2>
+        </Grid2>
+
+        <Grid2>
           <MenuDrawer
             links={menuLinks}
             open={hambugerActive}
@@ -80,8 +84,8 @@ export const HeaderBar: React.FC = (_) => {
             }}
             onOpen={hamburgerOnClick}
           />
-        </Grid>
-      </Grid>
+        </Grid2>
+      </Grid2>
     </AppBar>
   );
 };

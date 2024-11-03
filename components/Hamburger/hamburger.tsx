@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Grid2 } from "@mui/material";
 import classNames from "classnames";
 import styles from "./hamburger.module.css";
 
@@ -13,9 +13,10 @@ export const Hamburger: React.FC<HamburgerNavProps> = (
   const { active, onClick } = props;
 
   return (
-    <Grid
+    <Grid2
       container
-      justifyContent="flex-end"
+      size={{ xs: 12 }}
+      justifyContent={active ? "flex-end" : "flex-start"}
       className={styles["hamburger-container"]}
     >
       <button
@@ -32,6 +33,6 @@ export const Hamburger: React.FC<HamburgerNavProps> = (
           <span className={styles["hamburger-inner"]}></span>
         </span>
       </button>
-    </Grid>
+    </Grid2>
   );
 };
