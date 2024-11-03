@@ -8,9 +8,10 @@ export default withApiAuthRequired(async function handler(
 ) {
   const jobNimbusApi = new JobNimbusApi();
   const filter = req.query?.filter as string;
+  const size = parseInt(req.query?.size as string);
 
   try {
-    const response = await jobNimbusApi.getContacts(filter);
+    const response = await jobNimbusApi.getContacts(filter, size);
 
     res.status(response.status).json(response.data);
   } catch (err: any) {

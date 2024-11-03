@@ -27,9 +27,10 @@ export const useFleckAssistantApi = () => {
 
   const makeApiCall: <Type>(
     request: AxiosRequestConfig,
-    timeout?: number,
+    shouldSetIsLoading?: boolean,
   ) => Promise<ResponseStructure<Type>> = async (
     request: AxiosRequestConfig,
+    shouldSetIsLoading: boolean = true,
   ) => {
     let response: ResponseStructure<any> = {
       hasError: false,
@@ -41,7 +42,9 @@ export const useFleckAssistantApi = () => {
     };
 
     try {
-      setIsLoading(true);
+      if (shouldSetIsLoading) {
+        setIsLoading(true);
+      }
       const axiosResponse: AxiosResponse = await axios(request).catch(
         (error: AxiosError) => {
           console.error(error.message, error.response);
@@ -66,32 +69,45 @@ export const useFleckAssistantApi = () => {
       console.error(e);
       console.error(response.errorMessage);
     } finally {
-      setIsLoading(false);
+      if (shouldSetIsLoading) {
+        setIsLoading(false);
+      }
       return response;
     }
   };
 
   const getContactsApi = async (
     filter: any | undefined = undefined,
+    size: number = 10000,
+    shouldSetIsLoading: boolean = true,
   ): Promise<Array<ContactType>> => {
     const baseUrl = getFleckAssistantEndpoint();
     const encodedJsonFilter = encodeURIComponent(JSON.stringify(filter));
 
-    const response = await makeApiCall<ContactsResponse>({
-      url: `${baseUrl}/get-contacts?filter=${encodedJsonFilter}`,
-      method: "get",
-    });
+    const response = await makeApiCall<ContactsResponse>(
+      {
+        url: `${baseUrl}/get-contacts?filter=${encodedJsonFilter}&size=${size}`,
+        method: "get",
+      },
+      shouldSetIsLoading,
+    );
 
     return response.data?.results ?? [];
   };
 
-  const getContactByIdApi = async (id: string): Promise<ContactType> => {
+  const getContactByIdApi = async (
+    id: string,
+    shouldSetIsLoading: boolean = true,
+  ): Promise<ContactType> => {
     const baseUrl = getFleckAssistantEndpoint();
 
-    const response = await makeApiCall<ContactType>({
-      url: `${baseUrl}/get-contacts/${id}`,
-      method: "get",
-    });
+    const response = await makeApiCall<ContactType>(
+      {
+        url: `${baseUrl}/get-contacts/${id}`,
+        method: "get",
+      },
+      shouldSetIsLoading,
+    );
 
     return response.data ?? ({} as ContactType);
   };
@@ -99,14 +115,18 @@ export const useFleckAssistantApi = () => {
   const updateContactApi = async (
     id: string,
     updatedFields: any,
+    shouldSetIsLoading: boolean = true,
   ): Promise<ContactType> => {
     const baseUrl = getFleckAssistantEndpoint();
 
-    const response = await makeApiCall<ContactType>({
-      url: `${baseUrl}/update-contact/${id}`,
-      method: "put",
-      data: updatedFields,
-    });
+    const response = await makeApiCall<ContactType>(
+      {
+        url: `${baseUrl}/update-contact/${id}`,
+        method: "put",
+        data: updatedFields,
+      },
+      shouldSetIsLoading,
+    );
 
     return response.data ?? ({} as ContactType);
   };

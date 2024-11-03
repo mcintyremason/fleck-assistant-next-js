@@ -14,3 +14,12 @@
 .header-bar-container .hamburger-nav-container {
   width: 50px;
 }
+
+.header-bar-container .header-bar-title {
+  padding: 11px 0 0;
+}
+
+.header-bar-container .header-bar-title h4 {
+  color: var(--border-primary);
+  font-size: 1.2rem;
+}
