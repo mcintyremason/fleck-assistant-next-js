@@ -16,7 +16,7 @@ export const Hamburger: React.FC<HamburgerNavProps> = (
     <Grid2
       container
       size={{ xs: 12 }}
-      justifyContent={active ? "flex-end" : "flex-start"}
+      justifyContent={active ? "flex-end" : "center"}
       className={styles["hamburger-container"]}
     >
       <button

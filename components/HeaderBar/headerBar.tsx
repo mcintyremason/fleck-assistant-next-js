@@ -4,13 +4,22 @@ import MenuDrawer from "../../components/MenuDrawer";
 import ContactPhoneOutlinedIcon from "@mui/icons-material/ContactPhoneOutlined";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
-import { AppBar, Grid2, Typography } from "@mui/material";
+import {
+  AppBar,
+  Grid2,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import Link from "next/link";
 import { ListMenuLink } from "../../types/ListMenu";
 import Hamburger from "../Hamburger";
 import styles from "./headerBar.module.css";
 
 export const HeaderBar: React.FC = (_) => {
+  const theme = useTheme();
+  const isExtraSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
   const DEAULT_MENU_LINKS: Array<ListMenuLink> = [
     {
       text: "Home",
@@ -57,10 +66,10 @@ export const HeaderBar: React.FC = (_) => {
       className={styles["header-bar-container"]}
     >
       <Grid2 container>
-        <Grid2 size={{ xs: 1 }} className={styles["hamburger-nav-container"]}>
+        <Grid2 className={styles["hamburger-nav-container"]}>
           <Hamburger active={hambugerActive} onClick={hamburgerOnClick} />
         </Grid2>
-        <Grid2 size={{ xs: 11 }}>
+        <Grid2 size={{ xs: 6 }}>
           <Grid2
             container
             direction="column"
@@ -83,6 +92,7 @@ export const HeaderBar: React.FC = (_) => {
               resetMenuLinks();
             }}
             onOpen={hamburgerOnClick}
+            showCloseIcon={!isExtraSmallScreen}
           />
         </Grid2>
       </Grid2>

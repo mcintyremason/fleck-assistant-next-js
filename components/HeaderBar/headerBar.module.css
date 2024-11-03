@@ -10,3 +10,7 @@
 .header-bar-container a {
   border: none;
 }
+
+.header-bar-container .hamburger-nav-container {
+  width: 50px;
+}

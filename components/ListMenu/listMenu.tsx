@@ -158,6 +158,7 @@ export const ListMenu: React.FC<ListMenuProps> = (props: ListMenuProps) => {
             <Grid2
               key={`${link.text}-link`}
               container
+              size={{ xs: 12 }}
               className={styles["list-menu-link-container"]}
             >
               <List
@@ -181,10 +182,15 @@ export const ListMenu: React.FC<ListMenuProps> = (props: ListMenuProps) => {
                     )}
                     href={link.onClick ? "#" : link.href}
                   >
-                    <Grid2 container justifyContent="space-between" spacing={4}>
+                    <Grid2
+                      container
+                      size={{ xs: 12 }}
+                      justifyContent="space-between"
+                      spacing={4}
+                    >
                       <Grid2
                         container
-                        size={{ xs: 3 }}
+                        size={{ xs: 2 }}
                         direction="column"
                         justifyContent="center"
                       >
@@ -200,7 +206,7 @@ export const ListMenu: React.FC<ListMenuProps> = (props: ListMenuProps) => {
                       </Grid2>
                       <Grid2
                         container
-                        size={{ xs: 9 }}
+                        size={{ xs: 10 }}
                         direction="column"
                         justifyContent="center"
                       >
