@@ -15,6 +15,7 @@ import {
 import Link from "next/link";
 import { ListMenuLink } from "../../types/ListMenu";
 import Hamburger from "../Hamburger";
+import HeaderSearch from "../HeaderSearch";
 import styles from "./headerBar.module.css";
 
 export const HeaderBar: React.FC = (_) => {
@@ -70,7 +71,7 @@ export const HeaderBar: React.FC = (_) => {
         <Grid2 className={styles["hamburger-nav-container"]}>
           <Hamburger active={hambugerActive} onClick={hamburgerOnClick} />
         </Grid2>
-        <Grid2 size={{ xs: 2, sm: 6 }}>
+        <Grid2 size={{ xs: 2, sm: 4 }}>
           <Grid2
             container
             direction="column"
@@ -104,7 +105,20 @@ export const HeaderBar: React.FC = (_) => {
             </Link>
           </Grid2>
         </Grid2>
-
+        <Grid2
+          container
+          size={{ xs: 8, sm: 6, md: 7 }}
+          justifyContent="flex-end"
+        >
+          <Grid2
+            container
+            size={{ xs: 11 }}
+            flexDirection="column"
+            justifyContent="center"
+          >
+            <HeaderSearch />
+          </Grid2>
+        </Grid2>
         <Grid2>
           <MenuDrawer
             links={menuLinks}
