@@ -18,7 +18,7 @@ import { sortContactsByDate } from "../../utils/contacts";
 
 type ContactsSearchProps = {};
 
-const ContactsSearch: React.FC<ContactsSearchProps> = (_) => {
+export const ContactsSearch: React.FC<ContactsSearchProps> = (_) => {
   const [searchValue, setSearchValue] = React.useState("");
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -222,5 +222,3 @@ const ContactsSearch: React.FC<ContactsSearchProps> = (_) => {
     </Grid2>
   );
 };
-
-export default ContactsSearch;
