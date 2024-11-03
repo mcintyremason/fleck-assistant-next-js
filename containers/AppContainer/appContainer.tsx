@@ -15,13 +15,13 @@ const AppContainer: React.FC<AppContainerProps> = (props) => {
   const appContextValue = {};
 
   return (
-    <AppContext.Provider value={appContextValue}>
-      <UserProvider>
+    <UserProvider>
+      <AppContext.Provider value={appContextValue}>
         <LoadingContextProvider>
           <ErrorContextProvider>{props.children}</ErrorContextProvider>
         </LoadingContextProvider>
-      </UserProvider>
-    </AppContext.Provider>
+      </AppContext.Provider>
+    </UserProvider>
   );
 };
 

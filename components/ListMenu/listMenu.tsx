@@ -175,7 +175,7 @@ export const ListMenu: React.FC<ListMenuProps> = (props: ListMenuProps) => {
                     styles["list-menu-link"],
                   )}
                 >
-                  <Link
+                  <a
                     className={classNames(
                       styles["list-menu-link"],
                       link.href === router.pathname ? styles["active"] : "",
@@ -215,7 +215,7 @@ export const ListMenu: React.FC<ListMenuProps> = (props: ListMenuProps) => {
                         </Grid2>
                       </Grid2>
                     </Grid2>
-                  </Link>
+                  </a>
                 </ListItem>
               </List>
             </Grid2>
