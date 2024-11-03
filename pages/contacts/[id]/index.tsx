@@ -1,28 +1,23 @@
-import { Grid2, ThemeProvider } from "@mui/material";
+import { Grid2 } from "@mui/material";
 
 import { useRouter } from "next/router";
 import React from "react";
 import Contact from "../../../components/Contact";
-import Header from "../../../components/Header";
-import Layout from "../../../components/Layout";
-import originalTheme from "../../../themes/original-theme";
+import HeaderBar from "../../../components/HeaderBar";
 
 const ContactPage: React.FC = () => {
   const router = useRouter();
   const contactId = router.query.id as string;
   return (
-    <ThemeProvider theme={originalTheme}>
-      <Layout title="FRC Assistant">
-        <Grid2
-          className="app height-full"
-          itemScope
-          itemType="http://schema.org/LocalBusiness"
-        >
-          <Header />
-          <Contact id={contactId} />
-        </Grid2>
-      </Layout>
-    </ThemeProvider>
+    <Grid2
+      className="app height-full"
+      itemScope
+      itemType="http://schema.org/LocalBusiness"
+    >
+      {/* <Header /> */}
+      <HeaderBar />
+      <Contact id={contactId} />
+    </Grid2>
   );
 };
 

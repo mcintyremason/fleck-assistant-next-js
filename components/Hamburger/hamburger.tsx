@@ -1,38 +1,38 @@
-import { Grid } from "@mui/material";
+import { Grid2 } from "@mui/material";
 import classNames from "classnames";
-import React from "react";
-import styles from "./index.module.css";
+import styles from "./hamburger.module.css";
 
 type HamburgerNavProps = {
   active: boolean;
   onClick: (event: any) => void;
 };
 
-const HamburgerNav: React.FC<HamburgerNavProps> = (
+export const Hamburger: React.FC<HamburgerNavProps> = (
   props: HamburgerNavProps,
 ) => {
   const { active, onClick } = props;
 
   return (
-    <Grid
+    <Grid2
       container
-      justifyContent="flex-end"
-      onClick={onClick}
+      size={{ xs: 12 }}
+      justifyContent={active ? "flex-end" : "center"}
       className={styles["hamburger-container"]}
     >
       <button
+        onClick={onClick}
+        type="button"
+        aria-label="Hamburger Navigation"
         className={classNames(
           styles["hamburger"],
           styles["hamburger--collapse"],
           active ? styles["is-active"] : "",
         )}
-        type="button"
       >
         <span className={styles["hamburger-box"]}>
           <span className={styles["hamburger-inner"]}></span>
         </span>
       </button>
-    </Grid>
+    </Grid2>
   );
 };
-export default HamburgerNav;

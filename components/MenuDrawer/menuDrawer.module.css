@@ -1,0 +1,27 @@
+.menu-drawer > div {
+  min-width: calc(100% / 2);
+}
+
+.menu-drawer .hamburger-nav-container {
+  padding: 10px 5px;
+}
+
+.menu-drawer .created-by-container {
+  padding: 10px 0;
+}
+
+.menu-drawer a {
+  border: none;
+}
+
+@media only screen and (min-width: 600px) {
+  .menu-drawer > div {
+    min-width: calc(100% / 4);
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .menu-drawer > div {
+    min-width: calc(100% / 4);
+  }
+}
