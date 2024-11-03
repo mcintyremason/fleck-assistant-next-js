@@ -65,7 +65,7 @@ export function HeaderSearch(_: HeaderSearch) {
       }
     },
     // delay in ms
-    500,
+    250,
   );
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
