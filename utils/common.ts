@@ -1,3 +1,6 @@
+import { NextRouter } from "next/router";
+import { ListMenuLink } from "../types/ListMenu";
+
 export function logJson(
   data: any,
   message: string,
@@ -50,3 +53,14 @@ export function getInitials(name: string) {
     return name;
   }
 }
+
+export const subLinksActive = (
+  link: ListMenuLink,
+  router: NextRouter,
+): boolean => {
+  const activeLink = link?.subLinks.find(
+    (subLink) => subLink.href === router.pathname,
+  );
+
+  return activeLink ? true : false;
+};
