@@ -11,7 +11,6 @@ const ContactsPage: React.FC = () => {
       itemScope
       itemType="http://schema.org/LocalBusiness"
     >
-      {/* <Header /> */}
       <HeaderBar />
       <ContactsSearch />
     </Grid2>
