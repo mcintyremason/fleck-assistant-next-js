@@ -6,6 +6,7 @@ import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import {
   AppBar,
+  Box,
   Grid2,
   Typography,
   useMediaQuery,
@@ -69,7 +70,7 @@ export const HeaderBar: React.FC = (_) => {
         <Grid2 className={styles["hamburger-nav-container"]}>
           <Hamburger active={hambugerActive} onClick={hamburgerOnClick} />
         </Grid2>
-        <Grid2 size={{ xs: 6 }}>
+        <Grid2 size={{ xs: 2, sm: 6 }}>
           <Grid2
             container
             direction="column"
@@ -77,7 +78,29 @@ export const HeaderBar: React.FC = (_) => {
             className={styles["menu-title"]}
           >
             <Link href="/">
-              <Typography variant="h4">FRC Assistant</Typography>
+              <Grid2 container size={{ xs: 12 }}>
+                <Box
+                  component="img"
+                  sx={{
+                    height: 50,
+                    width: 50,
+                    maxHeight: { xs: 50 },
+                    maxWidth: { xs: 50 },
+                  }}
+                  alt="FRC Logo"
+                  src="/rwf180.png"
+                />
+                {!isExtraSmallScreen && (
+                  <Grid2
+                    container
+                    flexDirection="column"
+                    justifyContent="center"
+                    className={styles["header-bar-title"]}
+                  >
+                    <Typography variant="h4">Assistant</Typography>
+                  </Grid2>
+                )}
+              </Grid2>
             </Link>
           </Grid2>
         </Grid2>
