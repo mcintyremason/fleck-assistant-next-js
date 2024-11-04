@@ -6,6 +6,7 @@ import {
 } from "../contexts/ErrorContext";
 import { LoadingContext, SetLoadingContext } from "../contexts/LoadingContext";
 import { ContactsResponse, ContactType } from "../types/contacts";
+import { sortContactsByDate } from "../utils/contacts";
 import { getFleckAssistantEndpoint } from "../utils/env";
 
 export interface ResponseStructure<Type> {
@@ -131,10 +132,118 @@ export const useFleckAssistantApi = () => {
     return response.data ?? ({} as ContactType);
   };
 
+  const searchContacts = async (value: string) => {
+    const hasDigitRegex = /\d+/g;
+    const hasDigit = value.match(hasDigitRegex);
+
+    const firstNameFilter = {
+      must: [
+        {
+          regexp: {
+            first_name: `.*${value}.*`,
+          },
+        },
+      ],
+    };
+
+    const lastNameFilter = {
+      must: [
+        {
+          regexp: {
+            first_name: `.*${value}.*`,
+          },
+        },
+      ],
+    };
+
+    const displayNameFilter = {
+      must: [
+        {
+          regexp: {
+            display_name: `.*${value}.*`,
+          },
+        },
+      ],
+    };
+
+    const phoneNumberFilter = {
+      must: [
+        {
+          regexp: {
+            home_phone: `.*${value}.*`,
+          },
+        },
+      ],
+    };
+
+    const addressFilter = {
+      must: [
+        {
+          regexp: {
+            address_line1: `.*${value}.*`,
+          },
+        },
+      ],
+    };
+
+    const cityFilter = {
+      must: [
+        {
+          regexp: {
+            city: `.*${value}.*`,
+          },
+        },
+      ],
+    };
+
+    let allContacts = [];
+    if (hasDigit) {
+      const phoneNumberResponse = await getContactsApi(
+        phoneNumberFilter,
+        10,
+        false,
+      );
+      const addressResponse = await getContactsApi(addressFilter, 10, false);
+      allContacts = [...phoneNumberResponse, ...addressResponse];
+    } else {
+      const firstNameResponse = await getContactsApi(
+        firstNameFilter,
+        10,
+        false,
+      );
+      const lastNameResponse = await getContactsApi(lastNameFilter, 10, false);
+      const displayNameResponse = await getContactsApi(
+        displayNameFilter,
+        10,
+        false,
+      );
+      const addressResponse = await getContactsApi(addressFilter, 10, false);
+      const cityResponse = await getContactsApi(cityFilter, 10, false);
+      allContacts = [
+        ...firstNameResponse,
+        ...lastNameResponse,
+        ...displayNameResponse,
+        ...addressResponse,
+        ...cityResponse,
+      ];
+    }
+
+    // const uniqueContacts = Array.from(new Set(allContacts));
+    const uniqueContacts = [];
+    allContacts.forEach((contact) => {
+      if (!uniqueContacts.find((c) => c.jnid === contact.jnid)) {
+        uniqueContacts.push(contact);
+      }
+    });
+
+    return sortContactsByDate(uniqueContacts);
+  };
+
   return {
     getContactsApi,
     getContactByIdApi,
     updateContactApi,
+    searchContacts,
     isLoading,
     errorMessage,
   };

@@ -21,6 +21,7 @@ import styles from "./headerBar.module.css";
 export const HeaderBar: React.FC = (_) => {
   const theme = useTheme();
   const isExtraSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const DEAULT_MENU_LINKS: Array<ListMenuLink> = [
     {
@@ -91,7 +92,7 @@ export const HeaderBar: React.FC = (_) => {
                   alt="FRC Logo"
                   src="/rwf180.png"
                 />
-                {!isExtraSmallScreen && (
+                {!isSmallScreen && (
                   <Grid2
                     container
                     flexDirection="column"

@@ -14,7 +14,6 @@ import React from "react";
 import { useFleckAssistantApi } from "../../hooks/useFleckAssistantApi";
 import { ContactType } from "../../types/contacts";
 import { formatAddress } from "../../utils/common";
-import { sortContactsByDate } from "../../utils/contacts";
 
 type ContactsSearchProps = {};
 
@@ -25,105 +24,16 @@ export const ContactsSearch: React.FC<ContactsSearchProps> = (_) => {
     setSearchValue(event.target.value);
   };
 
-  const { getContactsApi, isLoading } = useFleckAssistantApi();
+  const { searchContacts, isLoading } = useFleckAssistantApi();
   const [contacts, setContacts] = React.useState<Array<ContactType>>([]);
 
   const fetchContacts = React.useCallback(
     async (value: string) => {
-      const hasDigitRegex = /\d+/g;
-      const hasDigit = value.match(hasDigitRegex);
+      const sortedUniqueContacts = await searchContacts(value);
 
-      const firstNameFilter = {
-        must: [
-          {
-            regexp: {
-              first_name: `.*${value}.*`,
-            },
-          },
-        ],
-      };
-
-      const lastNameFilter = {
-        must: [
-          {
-            regexp: {
-              first_name: `.*${value}.*`,
-            },
-          },
-        ],
-      };
-
-      const displayNameFilter = {
-        must: [
-          {
-            regexp: {
-              display_name: `.*${value}.*`,
-            },
-          },
-        ],
-      };
-
-      const phoneNumberFilter = {
-        must: [
-          {
-            regexp: {
-              home_phone: `.*${value}.*`,
-            },
-          },
-        ],
-      };
-
-      const addressFilter = {
-        must: [
-          {
-            regexp: {
-              address_line1: `.*${value}.*`,
-            },
-          },
-        ],
-      };
-
-      const cityFilter = {
-        must: [
-          {
-            regexp: {
-              city: `.*${value}.*`,
-            },
-          },
-        ],
-      };
-
-      let allContacts = [];
-      if (hasDigit) {
-        const phoneNumberResponse = await getContactsApi(phoneNumberFilter);
-        const addressResponse = await getContactsApi(addressFilter);
-        allContacts = [...phoneNumberResponse, ...addressResponse];
-      } else {
-        const firstNameResponse = await getContactsApi(firstNameFilter);
-        const lastNameResponse = await getContactsApi(lastNameFilter);
-        const displayNameResponse = await getContactsApi(displayNameFilter);
-        const addressResponse = await getContactsApi(addressFilter);
-        const cityResponse = await getContactsApi(cityFilter);
-        allContacts = [
-          ...firstNameResponse,
-          ...lastNameResponse,
-          ...displayNameResponse,
-          ...addressResponse,
-          ...cityResponse,
-        ];
-      }
-
-      // const uniqueContacts = Array.from(new Set(allContacts));
-      const uniqueContacts = [];
-      allContacts.forEach((contact) => {
-        if (!uniqueContacts.find((c) => c.jnid === contact.jnid)) {
-          uniqueContacts.push(contact);
-        }
-      });
-
-      setContacts(sortContactsByDate(uniqueContacts));
+      setContacts(sortedUniqueContacts);
     },
-    [getContactsApi],
+    [searchContacts],
   );
 
   return (
@@ -159,7 +69,6 @@ export const ContactsSearch: React.FC<ContactsSearchProps> = (_) => {
           />
         </Paper>
       </Grid2>
-
       <Grid2 container size={{ xs: 12 }}>
         {isLoading ? (
           <Grid2 container justifyContent="center" width="100%">
@@ -179,6 +88,7 @@ export const ContactsSearch: React.FC<ContactsSearchProps> = (_) => {
             {contacts.map((contact) => {
               return (
                 <Grid2
+                  key={`search-result-${contact.jnid}`}
                   container
                   size={{ xs: 12 }}
                   width="100%"
