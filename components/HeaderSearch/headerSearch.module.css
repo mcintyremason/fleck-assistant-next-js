@@ -22,7 +22,7 @@
 
 .header-search-container .search-container .search-input {
   color: inherit;
-  width: 85%;
+  width: 90%;
 }
 
 .header-search-container .search-container .clear-search-icon-container {
@@ -60,6 +60,12 @@
 
 @media screen and (min-width: 769px) {
   .header-search-container .search-container .search-input {
-    width: 90%;
+    width: 95%;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .header-search-container .search-container .search-input {
+    width: 97%;
   }
 }

@@ -93,7 +93,7 @@ export function HeaderSearch(_: HeaderSearch) {
 
       <Grid2
         container
-        size={{ xs: 6 }}
+        size={{ xs: 11 }}
         flexDirection="column"
         className={classNames(styles["search-results-container"])}
       >
@@ -111,28 +111,19 @@ export function HeaderSearch(_: HeaderSearch) {
                       href={`/contacts/${contact.jnid}`}
                       className={classNames(styles["search-result-link"])}
                     >
-                      <Grid2
-                        container
-                        columns={{ xs: 12 }}
-                        flexGrow={1}
-                        spacing={1}
-                      >
-                        <Grid2 flexDirection="column" size={{ xs: 12, sm: 4 }}>
+                      <Grid2 container columns={{ xs: 12 }} flexGrow={1}>
+                        <Grid2 flexDirection="column" size={{ xs: 4 }}>
                           <Typography variant="h6">Contact Name</Typography>
                           <Typography>{contact.display_name}</Typography>
                         </Grid2>
-                        {!isExtraSmallScreen && (
-                          <Grid2 flexDirection="column" size={{ sm: 3 }}>
-                            <Typography variant="h6">Phone Number</Typography>
-                            <Typography>{contact.home_phone}</Typography>
-                          </Grid2>
-                        )}
-                        {!isExtraSmallScreen && (
-                          <Grid2 flexDirection="column" size={{ sm: 5 }}>
-                            <Typography variant="h6">Address</Typography>
-                            <Typography>{formatAddress(contact)}</Typography>
-                          </Grid2>
-                        )}
+                        <Grid2 flexDirection="column" size={{ xs: 3 }}>
+                          <Typography variant="h6">Phone Number</Typography>
+                          <Typography>{contact.home_phone}</Typography>
+                        </Grid2>
+                        <Grid2 flexDirection="column" size={{ xs: 5 }}>
+                          <Typography variant="h6">Address</Typography>
+                          <Typography>{formatAddress(contact)}</Typography>
+                        </Grid2>
                       </Grid2>
                     </Link>
                   </Card>
