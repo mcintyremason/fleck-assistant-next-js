@@ -2,16 +2,7 @@ import styles from "./headerSearch.module.css";
 
 import ClearIcon from "@mui/icons-material/Clear";
 import SearchIcon from "@mui/icons-material/Search";
-import {
-  Box,
-  Card,
-  Grid2,
-  InputBase,
-  Link,
-  Typography,
-  useMediaQuery,
-} from "@mui/material";
-import { useTheme } from "@mui/material/styles";
+import { Box, Card, Grid2, InputBase, Link, Typography } from "@mui/material";
 import classNames from "classnames";
 import React, { useEffect } from "react";
 import { useDebouncedCallback } from "use-debounce";
@@ -26,9 +17,6 @@ export function HeaderSearch(_: HeaderSearch) {
   const [contacts, setContacts] = React.useState<Array<ContactType>>([]);
 
   const { searchContacts } = useFleckAssistantApi();
-
-  const theme = useTheme();
-  const isExtraSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const debouncedSearch = useDebouncedCallback(
     async () => {
