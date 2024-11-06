@@ -21,7 +21,6 @@ import styles from "./headerBar.module.css";
 export const HeaderBar: React.FC = (_) => {
   const theme = useTheme();
   const isExtraSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const DEAULT_MENU_LINKS: Array<ListMenuLink> = [
     {
@@ -68,52 +67,50 @@ export const HeaderBar: React.FC = (_) => {
       color="transparent"
       className={styles["header-bar-container"]}
     >
-      <Grid2 container>
-        <Grid2 className={styles["hamburger-nav-container"]}>
-          <Hamburger active={hambugerActive} onClick={hamburgerOnClick} />
-        </Grid2>
-        <Grid2 size={{ xs: 2, sm: 4 }}>
-          <Grid2
-            container
-            direction="column"
-            justifyContent="center"
-            className={styles["menu-title"]}
-          >
-            <Link href="/">
+      <Grid2 container size={{ xs: 12 }}>
+        <Grid2 container size={{ xs: 12 }}>
+          <Grid2 className={styles["hamburger-nav-container"]}>
+            <Hamburger active={hambugerActive} onClick={hamburgerOnClick} />
+          </Grid2>
+          <Grid2 size={{ xs: 6, md: 5, lg: 2 }}>
+            <Grid2
+              container
+              direction="column"
+              justifyContent="center"
+              className={styles["menu-title"]}
+            >
               <Grid2 container size={{ xs: 12 }}>
-                <Box
-                  component="img"
-                  sx={{
-                    height: 50,
-                    width: 50,
-                    maxHeight: { xs: 50 },
-                    maxWidth: { xs: 50 },
-                  }}
-                  alt="FRC Logo"
-                  src="/rwf180.png"
-                />
-                {!isSmallScreen && (
-                  <Grid2
-                    container
-                    flexDirection="column"
-                    justifyContent="center"
-                    className={styles["header-bar-title"]}
-                  >
+                <Link href="/">
+                  <Box
+                    component="img"
+                    sx={{
+                      height: 50,
+                      width: 50,
+                      maxHeight: { xs: 50 },
+                      maxWidth: { xs: 50 },
+                    }}
+                    alt="FRC Logo"
+                    src="/rwf180.png"
+                  />
+                </Link>
+                <Grid2
+                  container
+                  flexDirection="column"
+                  justifyContent="center"
+                  className={styles["header-bar-title"]}
+                >
+                  <Link href="/">
                     <Typography variant="h4">Assistant</Typography>
-                  </Grid2>
-                )}
+                  </Link>
+                </Grid2>
               </Grid2>
-            </Link>
+            </Grid2>
           </Grid2>
         </Grid2>
-        <Grid2
-          container
-          size={{ xs: 8, sm: 6, md: 7 }}
-          justifyContent="flex-end"
-        >
+        <Grid2 container size={{ xs: 12 }} justifyContent="flex-end">
           <Grid2
             container
-            size={{ xs: 11 }}
+            size={{ xs: 12 }}
             flexDirection="column"
             justifyContent="center"
           >

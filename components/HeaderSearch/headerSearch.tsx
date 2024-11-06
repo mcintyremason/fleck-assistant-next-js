@@ -2,16 +2,7 @@ import styles from "./headerSearch.module.css";
 
 import ClearIcon from "@mui/icons-material/Clear";
 import SearchIcon from "@mui/icons-material/Search";
-import {
-  Box,
-  Card,
-  Grid2,
-  InputBase,
-  Link,
-  Typography,
-  useMediaQuery,
-} from "@mui/material";
-import { useTheme } from "@mui/material/styles";
+import { Box, Card, Grid2, InputBase, Link, Typography } from "@mui/material";
 import classNames from "classnames";
 import React, { useEffect } from "react";
 import { useDebouncedCallback } from "use-debounce";
@@ -26,9 +17,6 @@ export function HeaderSearch(_: HeaderSearch) {
   const [contacts, setContacts] = React.useState<Array<ContactType>>([]);
 
   const { searchContacts } = useFleckAssistantApi();
-
-  const theme = useTheme();
-  const isExtraSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const debouncedSearch = useDebouncedCallback(
     async () => {
@@ -93,7 +81,7 @@ export function HeaderSearch(_: HeaderSearch) {
 
       <Grid2
         container
-        size={{ xs: 6 }}
+        size={{ xs: 11 }}
         flexDirection="column"
         className={classNames(styles["search-results-container"])}
       >
@@ -111,28 +99,19 @@ export function HeaderSearch(_: HeaderSearch) {
                       href={`/contacts/${contact.jnid}`}
                       className={classNames(styles["search-result-link"])}
                     >
-                      <Grid2
-                        container
-                        columns={{ xs: 12 }}
-                        flexGrow={1}
-                        spacing={1}
-                      >
-                        <Grid2 flexDirection="column" size={{ xs: 12, sm: 4 }}>
+                      <Grid2 container columns={{ xs: 12 }} flexGrow={1}>
+                        <Grid2 flexDirection="column" size={{ xs: 4 }}>
                           <Typography variant="h6">Contact Name</Typography>
                           <Typography>{contact.display_name}</Typography>
                         </Grid2>
-                        {!isExtraSmallScreen && (
-                          <Grid2 flexDirection="column" size={{ sm: 3 }}>
-                            <Typography variant="h6">Phone Number</Typography>
-                            <Typography>{contact.home_phone}</Typography>
-                          </Grid2>
-                        )}
-                        {!isExtraSmallScreen && (
-                          <Grid2 flexDirection="column" size={{ sm: 5 }}>
-                            <Typography variant="h6">Address</Typography>
-                            <Typography>{formatAddress(contact)}</Typography>
-                          </Grid2>
-                        )}
+                        <Grid2 flexDirection="column" size={{ xs: 3 }}>
+                          <Typography variant="h6">Phone Number</Typography>
+                          <Typography>{contact.home_phone}</Typography>
+                        </Grid2>
+                        <Grid2 flexDirection="column" size={{ xs: 5 }}>
+                          <Typography variant="h6">Address</Typography>
+                          <Typography>{formatAddress(contact)}</Typography>
+                        </Grid2>
                       </Grid2>
                     </Link>
                   </Card>
