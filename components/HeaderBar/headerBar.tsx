@@ -21,7 +21,6 @@ import styles from "./headerBar.module.css";
 export const HeaderBar: React.FC = (_) => {
   const theme = useTheme();
   const isExtraSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const DEAULT_MENU_LINKS: Array<ListMenuLink> = [
     {
