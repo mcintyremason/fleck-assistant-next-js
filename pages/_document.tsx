@@ -35,6 +35,18 @@ class MyDocument extends Document {
             rel="stylesheet"
             href="/css/fonts/font-awesome-4.7.0/css/font-awesome.min.css"
           />
+          <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-J1J5941ER1"
+          ></script>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-J1J5941ER1');`,
+            }}
+          />
         </Head>
         <body>
           <Main />
